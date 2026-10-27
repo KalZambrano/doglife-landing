@@ -1,0 +1,72 @@
+---
+import JointIcon from '@/assets/icons/joint.svg';
+import ToothIcon from '@/assets/icons/tooth.svg';
+import LeafIcon from '@/assets/icons/leaf.svg';
+import HeartSparkleIcon from '@/assets/icons/heart-sparkle.svg';
+import { BENEFITS } from '@/data/doglife';
+
+const iconMap = {
+  joint: JointIcon,
+  tooth: ToothIcon,
+  leaf: LeafIcon,
+  calm: HeartSparkleIcon,
+} as const;
+---
+
+<section
+  id="beneficios"
+  style="--section-intrinsic-height: 600px;"
+  class="deferred-section w-full bg-surface md:bg-surface-container-lowest py-8 md:py-[72px] px-margin-mobile md:px-margin"
+>
+  <div class="max-w-[1280px] mx-auto space-y-6 md:space-y-space-xl">
+    <!-- Section Heading -->
+    <div class="md:text-center max-w-2xl md:mx-auto space-y-space-xs">
+      <span class="text-label-sm uppercase tracking-widest text-secondary">
+        <span class="md:hidden">Bienestar Total</span>
+        <span class="hidden md:inline">Propiedades Biológicas</span>
+      </span>
+      <h2 class="fluid-section-title text-primary">
+        <span class="md:hidden">Amor que se siente en cada bocado</span>
+        <span class="hidden md:inline">¿Por qué los veterinarios holísticos las recomiendan?</span>
+      </h2>
+      <p class="hidden md:block text-body-md text-on-surface-variant">
+        Las patitas de pollo deshidratadas son una de las fuentes naturales más concentradas de
+        sulfato de condroitina y colágeno tipo II.
+      </p>
+    </div>
+
+    <!-- 2-Column Mobile Grid -> 4-Column Desktop Grid -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-space-lg">
+      {
+        BENEFITS.map((item) => {
+          const IconComponent = iconMap[item.id];
+          return (
+            <article class="boutique-card rounded-xl p-3.5 md:p-space-lg flex flex-col justify-between gap-3">
+              <div class="space-y-2 md:space-y-space-sm">
+                <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary-fixed md:bg-secondary-container text-primary md:text-on-secondary-container flex items-center justify-center">
+                  <IconComponent class="w-5 h-5 md:w-6 md:h-6" aria-hidden="true" />
+                </div>
+
+                <h3 class="font-sans font-semibold text-title-md md:font-display md:text-headline-sm text-primary leading-tight">
+                  <span class="md:hidden">{item.mobileTitle}</span>
+                  <span class="hidden md:inline">{item.title}</span>
+                </h3>
+
+                <p class="text-body-sm md:text-body-md text-on-surface-variant">
+                  <span class="md:hidden">{item.mobileDescription}</span>
+                  <span class="hidden md:inline">{item.description}</span>
+                </p>
+              </div>
+
+              <div class="hidden md:block pt-space-xs">
+                <div class="bg-pill-bg border border-pill-border rounded-full py-1 px-space-sm text-center">
+                  <span class="text-label-sm text-mocha">{item.badge}</span>
+                </div>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

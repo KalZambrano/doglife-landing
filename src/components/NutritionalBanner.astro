@@ -1,0 +1,84 @@
+---
+import ScaleIcon from '@/assets/icons/scale.svg';
+import LightbulbIcon from '@/assets/icons/lightbulb.svg';
+---
+
+<section class="w-full bg-surface md:bg-surface-container-high py-4 md:py-space-xl px-margin-mobile md:px-margin">
+  <div class="max-w-[1280px] mx-auto">
+    <!-- Mobile Rich Mocha Card / Desktop Soft Latte Container -->
+    <div
+      class="bg-primary text-on-primary md:bg-surface-container md:text-on-surface md:border md:border-craft-border rounded-2xl p-5 md:p-space-xl shadow-ambient relative overflow-hidden"
+    >
+      <!-- Subtle Mobile Scale Watermark -->
+      <div
+        aria-hidden="true"
+        class="md:hidden absolute -right-4 -bottom-4 opacity-12 pointer-events-none text-on-primary"
+      >
+        <ScaleIcon class="w-28 h-28" aria-hidden="true" />
+      </div>
+
+      <!-- Mobile Layout -->
+      <div class="flex md:hidden flex-col gap-2.5 relative z-10">
+        <div class="flex items-center gap-2">
+          <LightbulbIcon class="w-5 h-5 text-secondary-fixed shrink-0" aria-hidden="true" />
+          <span class="text-label-sm tracking-wider uppercase text-secondary-fixed">
+            Dato Nutricional Clave
+          </span>
+        </div>
+        <h2 class="font-sans text-title-md text-surface-bright leading-snug">
+          ¿Sabías que <span class="text-secondary-fixed font-bold">1 patita deshidratada</span>{' '}
+          equivale a <span class="text-secondary-fixed font-bold">25 gramos de croquetas</span> en
+          aporte proteico y colágeno bioasimilable?
+        </h2>
+        <div class="flex items-center justify-between pt-1 gap-2 flex-wrap">
+          <span class="text-label-sm font-medium text-on-primary-container">
+            Menos procesado, mayor absorción.
+          </span>
+          <span
+            class="text-label-sm bg-primary-container px-2.5 py-1 rounded-full text-surface-bright"
+          >
+            Digestible 98% • ~65 kcal
+          </span>
+        </div>
+      </div>
+
+      <!-- Desktop 12-Col Equivalence Banner -->
+      <div class="hidden md:grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+        <div class="lg:col-span-4 flex items-center gap-space-md">
+          <div
+            class="w-16 h-16 rounded-full bg-mocha text-eggshell flex items-center justify-center shrink-0 shadow-xs"
+          >
+            <ScaleIcon class="w-8 h-8" aria-hidden="true" />
+          </div>
+          <div>
+            <span class="text-label-sm text-secondary uppercase tracking-widest">
+              Equivalencia Nutritiva
+            </span>
+            <h2 class="font-display text-headline-md text-primary leading-tight">
+              1 Patita = 25g de croquetas premium
+            </h2>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <p class="text-body-md text-on-surface-variant leading-relaxed">
+            La masticación prolongada de cartílago natural produce enzimas salivales que limpian
+            placa bacteriana mientras el colágeno hidrata los discos intervertebrales y ligamentos.
+          </p>
+        </div>
+
+        <div class="lg:col-span-3 flex lg:justify-end">
+          <div
+            class="bg-eggshell border border-craft-border px-space-lg py-space-md rounded-xl shadow-xs text-center w-full lg:w-auto"
+          >
+            <span class="text-label-sm font-medium text-on-surface-variant block">
+              Calorías promedio por unidad
+            </span>
+            <span class="font-display text-headline-lg text-secondary block">~65 kcal</span>
+            <span class="text-label-sm text-mocha block">Sin harinas ni carbohidratos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

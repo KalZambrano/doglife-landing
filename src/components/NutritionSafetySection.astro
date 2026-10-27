@@ -1,0 +1,137 @@
+---
+import ChartBarIcon from '@/assets/icons/chart-bar.svg';
+import JointIcon from '@/assets/icons/joint.svg';
+import PawIcon from '@/assets/icons/paw.svg';
+import WaterDropIcon from '@/assets/icons/water-drop.svg';
+import ChevronDownIcon from '@/assets/icons/chevron-down.svg';
+import { COMPOSITION_METRICS, FAQ_ITEMS } from '@/data/doglife';
+---
+
+<section
+  id="seguridad-faq"
+  style="--section-intrinsic-height: 700px;"
+  class="deferred-section w-full bg-surface md:bg-surface-container-lowest py-8 md:py-[72px] px-margin-mobile md:px-margin"
+>
+  <div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-lg lg:gap-space-xl items-start">
+    <!-- Left Column: Guaranteed Bromatological Analysis -->
+    <div
+      class="lg:col-span-6 space-y-space-md bg-surface-container-low border border-craft-border p-5 md:p-space-xl rounded-2xl shadow-ambient"
+    >
+      <div class="space-y-space-xs">
+        <span class="text-label-sm text-secondary uppercase tracking-widest">
+          Análisis Garantizado
+        </span>
+        <h2 class="font-display text-headline-sm md:text-headline-md text-primary">
+          Composición Nutricional 100% Pura
+        </h2>
+        <p class="text-body-sm text-on-surface-variant">
+          Resultados bromatológicos basados en deshidratación controlada sin pérdida de nutrientes
+          esenciales.
+        </p>
+      </div>
+
+      <dl class="space-y-space-md pt-space-xs">
+        {
+          COMPOSITION_METRICS.map((metric) => (
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between text-label-md text-primary">
+                <dt class="font-bold flex items-center gap-1.5">
+                  {metric.icon === 'chart' && (
+                    <ChartBarIcon class="w-4 h-4 text-secondary shrink-0" aria-hidden="true" />
+                  )}
+                  {metric.icon === 'joint' && (
+                    <JointIcon class="w-4 h-4 text-secondary shrink-0" aria-hidden="true" />
+                  )}
+                  <span>{metric.label}</span>
+                </dt>
+                <dd class="font-bold text-secondary">{metric.percentage}</dd>
+              </div>
+              <div
+                aria-hidden="true"
+                class="w-full h-3 bg-surface-container-high rounded-full overflow-hidden"
+              >
+                <div
+                  style={`--bar-width: ${metric.percentage};`}
+                  class:list={['composition-bar-fill h-full rounded-full', metric.barColorClass]}
+                />
+              </div>
+              {metric.note && (
+                <p class="text-label-sm font-normal text-on-surface-variant">{metric.note}</p>
+              )}
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <!-- Right Column: Chew Safety Guide & Exclusive FAQ Accordions -->
+    <div class="lg:col-span-6 space-y-space-md">
+      <div class="space-y-space-xs">
+        <span class="text-label-sm uppercase tracking-widest text-secondary">
+          Consumo Seguro &amp; Preguntas Frecuentes
+        </span>
+        <h2 class="fluid-section-title text-primary">¿Los huesos de pollo no se astillan?</h2>
+        <p class="text-body-md text-on-surface-variant leading-relaxed">
+          <strong class="text-primary">Diferencia fundamental:</strong> Los huesos cocidos al fuego
+          o hervidos modifican su estructura molecular volviéndose quebradizos y peligrosos. El
+          proceso de deshidratación lenta de DogLife a baja temperatura elimina la humedad
+          preservando la elasticidad del colágeno, haciendo que el huesecillo se desmenuce en polvo
+          crujiente al masticarse.
+        </p>
+      </div>
+
+      <!-- Daily Portion & Hydration Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-space-sm">
+        <div
+          class="flex items-start gap-space-sm p-space-md rounded-xl bg-surface-container border border-craft-border"
+        >
+          <PawIcon class="w-5 h-5 text-mocha shrink-0 mt-0.5" aria-hidden="true" />
+          <div>
+            <h3 class="text-title-md text-primary">Porción Diaria Sugerida</h3>
+            <p class="text-body-sm text-on-surface-variant mt-0.5 leading-relaxed">
+              Perros pequeños (&lt; 10 kg): 1 patita cada 2 días.<br />
+              Perros medianos (10 – 25 kg): 1 patita al día.<br />
+              Perros grandes (&gt; 25 kg): 1 a 2 patitas al día.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="flex items-start gap-space-sm p-space-md rounded-xl bg-surface-container border border-craft-border"
+        >
+          <WaterDropIcon class="w-5 h-5 text-mocha shrink-0 mt-0.5" aria-hidden="true" />
+          <div>
+            <h3 class="text-title-md text-primary">Agua Fresca Disponible</h3>
+            <p class="text-body-sm text-on-surface-variant mt-0.5 leading-relaxed">
+              Asegúrate de que siempre tenga su bebedero lleno para complementar cada sesión de
+              masticación.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exclusive Native <details> FAQ Set -->
+      <div class="space-y-space-xs pt-space-xs">
+        {
+          FAQ_ITEMS.map((faq) => (
+            <details
+              name="faq-doglife"
+              class="faq-disclosure rounded-xl bg-eggshell border border-craft-border px-space-md py-3 shadow-2xs"
+            >
+              <summary class="cursor-pointer flex items-center justify-between gap-space-sm text-title-md text-primary min-h-8">
+                <span>{faq.question}</span>
+                <ChevronDownIcon
+                  class="faq-chevron w-5 h-5 text-caramel shrink-0 transition-transform duration-200"
+                  aria-hidden="true"
+                />
+              </summary>
+              <p class="pt-space-sm text-body-sm text-on-surface-variant leading-relaxed border-t border-craft-border/60 mt-space-xs">
+                {faq.answer}
+              </p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

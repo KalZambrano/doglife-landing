@@ -1,0 +1,67 @@
+---
+import StarIcon from '@/assets/icons/star.svg';
+import { TESTIMONIALS } from '@/data/doglife';
+---
+
+<section
+  id="testimonios"
+  style="--section-intrinsic-height: 540px;"
+  class="deferred-section w-full bg-surface md:bg-surface-container-lowest py-8 md:py-[72px] px-margin-mobile md:px-margin"
+>
+  <div class="max-w-[1280px] mx-auto space-y-6 md:space-y-space-xl">
+    <div class="md:text-center max-w-2xl md:mx-auto space-y-space-xs">
+      <span class="text-label-sm uppercase tracking-widest text-secondary">
+        Comunidad DogLife
+      </span>
+      <h2 class="fluid-section-title text-primary">
+        Familias peruanas que ya transformaron sus paseos
+      </h2>
+      <p class="md:hidden text-body-sm text-on-surface-variant">
+        +450 perritos engreídos cada mes con DogLife Store.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 md:gap-space-lg">
+      {
+        TESTIMONIALS.map((review) => (
+          <figure class="boutique-card rounded-2xl p-4 md:p-space-lg flex flex-col justify-between gap-space-md">
+            <div class="space-y-space-sm">
+              <div
+                class="flex items-center gap-0.5 text-honey"
+                aria-label="Calificación de 5 estrellas"
+              >
+                <StarIcon class="w-4 h-4" aria-hidden="true" />
+                <StarIcon class="w-4 h-4" aria-hidden="true" />
+                <StarIcon class="w-4 h-4" aria-hidden="true" />
+                <StarIcon class="w-4 h-4" aria-hidden="true" />
+                <StarIcon class="w-4 h-4" aria-hidden="true" />
+              </div>
+
+              <blockquote class="text-body-sm md:text-body-md text-on-surface italic leading-relaxed">
+                <p>“{review.quote}”</p>
+              </blockquote>
+            </div>
+
+            <figcaption class="pt-space-xs border-t border-craft-border/70 flex items-center gap-space-sm">
+              <span
+                aria-hidden="true"
+                class:list={[
+                  'w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center font-bold text-primary text-label-md shrink-0',
+                  review.avatarBgClass,
+                ]}
+              >
+                {review.initials}
+              </span>
+              <div>
+                <p class="text-title-md text-primary leading-tight">{review.name}</p>
+                <p class="text-label-sm font-medium text-on-surface-variant mt-0.5">
+                  {review.subtitle}
+                </p>
+              </div>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>

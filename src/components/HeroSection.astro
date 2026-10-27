@@ -1,0 +1,246 @@
+---
+import { getImage } from 'astro:assets';
+import heroDesktopSrc from '@/assets/images/hero-desktop.jpg';
+import heroMobileSrc from '@/assets/images/hero-mobile.jpg';
+import PawIcon from '@/assets/icons/paw.svg';
+import VerifiedIcon from '@/assets/icons/verified.svg';
+import StarIcon from '@/assets/icons/star.svg';
+import ArrowDownIcon from '@/assets/icons/arrow-down.svg';
+import WhatsAppIcon from '@/assets/icons/whatsapp.svg';
+import ShieldCheckIcon from '@/assets/icons/shield-check.svg';
+import LeafIcon from '@/assets/icons/leaf.svg';
+import { SITE_CONFIG, buildWhatsAppUrl } from '@/data/doglife';
+
+const heroDesktopWebp = await getImage({ src: heroDesktopSrc, format: 'webp', quality: 84 });
+const heroMobileWebp = await getImage({ src: heroMobileSrc, format: 'webp', quality: 84 });
+
+const heroWhatsAppUrl = buildWhatsAppUrl(
+  'Hola DogLife, quiero pedir patitas deshidratadas para mi perrito'
+);
+---
+
+<section
+  id="inicio"
+  class="w-full bg-surface-bright md:bg-surface-container-lowest pt-6 pb-8 md:py-[72px] px-margin-mobile md:px-margin relative overflow-hidden"
+>
+  <!-- Desktop Soft Ambient Glow -->
+  <div
+    aria-hidden="true"
+    class="hidden md:block absolute -top-24 -right-16 w-[480px] h-[480px] rounded-full bg-surface-container-high/60 blur-3xl pointer-events-none"
+  >
+  </div>
+
+  <!-- Mobile Subtle Paw Watermark -->
+  <div
+    aria-hidden="true"
+    class="md:hidden absolute -right-6 top-8 opacity-5 pointer-events-none select-none text-primary"
+  >
+    <PawIcon class="w-44 h-44" aria-hidden="true" />
+  </div>
+
+  <div
+    class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-y-5 lg:gap-y-space-md lg:gap-x-space-xl items-center relative z-10"
+  >
+    <!-- Row 1 Left: Badges, Editorial H1, and Intro Copy -->
+    <div class="lg:col-start-1 lg:col-span-7 flex flex-col gap-space-md lg:self-end">
+      <div class="flex flex-wrap items-center gap-space-xs">
+        <span
+          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pill-bg border border-pill-border text-mocha text-label-sm uppercase md:normal-case tracking-wider md:tracking-normal"
+        >
+          <VerifiedIcon class="w-4 h-4 text-sage" aria-hidden="true" />
+          <span class="md:hidden">Snack de Origen Natural</span>
+          <span class="hidden md:inline">Snack Monoproteico Artesanal</span>
+        </span>
+        <span
+          class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-label-sm"
+        >
+          <StarIcon class="w-3.5 h-3.5" aria-hidden="true" />
+          <span>Deshidratado a Baja Temperatura (72h)</span>
+        </span>
+      </div>
+
+      <div class="space-y-1.5">
+        <p class="md:hidden font-display italic text-title-md text-secondary">
+          Cuidamos lo que más amas • Un premio para consentir
+        </p>
+        <h1
+          id="contenido-principal"
+          tabindex="-1"
+          class="fluid-hero-title text-primary focus:outline-none"
+        >
+          Patitas crujientes que cuidan sus articulaciones y limpian sus dientes.
+        </h1>
+      </div>
+
+      <!-- Mobile Warm Emotional Quote -->
+      <div
+        class="md:hidden p-3.5 bg-surface-container-low border border-craft-border rounded-xl flex items-start gap-2.5"
+      >
+        <PawIcon class="w-5 h-5 text-caramel shrink-0 mt-0.5" aria-hidden="true" />
+        <p class="text-body-sm text-on-surface-variant italic">
+          “Ellos hacen nuestros días más bonitos con su amor incondicional. ¿Y si hoy les damos un
+          pequeño premio crujiente y lleno de vida?”
+        </p>
+      </div>
+
+      <!-- Desktop Lead Paragraph -->
+      <p class="hidden md:block text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
+        Elaboradas en Lima sin aditivos, sales ni químicos. El snack natural más rico en colágeno
+        biodisponible y glucosamina, con textura masticable que satisface su instinto canino y
+        combate el sarro.
+      </p>
+    </div>
+
+    <!-- Single Art-Directed LCP Hero Picture (Non-focusable media placed naturally for mobile & spanning right column on desktop) -->
+    <div class="lg:col-start-8 lg:col-span-5 lg:row-start-1 lg:row-span-2 relative">
+      <div
+        class="relative rounded-2xl overflow-hidden shadow-ambient border border-craft-border bg-surface-container"
+      >
+        <picture>
+          <source
+            media="(max-width: 767px)"
+            srcset={heroMobileWebp.src}
+            type="image/webp"
+            width={heroMobileSrc.width}
+            height={heroMobileSrc.height}
+          />
+          <source
+            srcset={heroDesktopWebp.src}
+            type="image/webp"
+            width={heroDesktopSrc.width}
+            height={heroDesktopSrc.height}
+          />
+          <img
+            src={heroDesktopSrc.src}
+            alt="Empaque kraft artesanal DogLife Store junto a tazón rústico con patitas de pollo deshidratadas doradas sobre lino natural"
+            width={heroDesktopSrc.width}
+            height={heroDesktopSrc.height}
+            fetchpriority="high"
+            decoding="async"
+            class="w-full aspect-4/3 lg:aspect-auto lg:h-[460px] object-cover"
+          />
+        </picture>
+
+        <!-- Mobile Glassmorphic Craft Pill -->
+        <div
+          class="lg:hidden absolute bottom-3 left-3 right-3 p-2.5 bg-surface-bright/92 backdrop-blur-md rounded-xl border border-craft-border flex items-center justify-between gap-2 shadow-xs"
+        >
+          <div class="flex items-center gap-2 min-w-0">
+            <span
+              class="w-7 h-7 rounded-full bg-mocha flex items-center justify-center text-eggshell shrink-0"
+            >
+              <LeafIcon class="w-4 h-4" aria-hidden="true" />
+            </span>
+            <div class="min-w-0">
+              <p class="text-label-sm font-bold text-primary truncate">
+                Secado Lento a Baja Temp.
+              </p>
+              <p class="text-label-sm font-normal text-on-surface-variant truncate">
+                Sin sal añadida • Uñas retiradas
+              </p>
+            </div>
+          </div>
+          <span
+            class="text-label-sm font-bold text-secondary-container bg-primary px-2.5 py-0.5 rounded-full shrink-0"
+          >
+            100% Puro
+          </span>
+        </div>
+
+        <!-- Desktop Editorial Gradient Caption -->
+        <div
+          class="hidden lg:flex absolute inset-0 bg-linear-to-t from-primary/75 via-primary/15 to-transparent items-end p-space-lg"
+        >
+          <div class="text-on-primary space-y-space-xs">
+            <span
+              class="inline-flex px-space-sm py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-label-sm"
+            >
+              Lote Fresco Semanal
+            </span>
+            <p class="font-display text-headline-sm text-on-primary">
+              Deshidratado Lento en Horno Eléctrico
+            </p>
+            <p class="text-body-sm text-surface-container-high">
+              Sin frituras, sin humo, 100% digestible y seguro.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop Floating Safety Seal -->
+      <div
+        class="hidden lg:flex absolute -bottom-5 -left-5 bg-warm-milk border border-craft-border p-space-md rounded-2xl shadow-ambient items-center gap-space-sm max-w-xs"
+      >
+        <div
+          class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container shrink-0"
+        >
+          <ShieldCheckIcon class="w-6 h-6" aria-hidden="true" />
+        </div>
+        <div>
+          <p class="text-title-md text-primary leading-tight">Uñas Retiradas</p>
+          <p class="text-body-sm text-on-surface-variant">
+            Cada patita pasa por corte seguro anti-rasguños.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2 Left: Conversion CTAs & Social Proof -->
+    <div class="lg:col-start-1 lg:col-span-7 flex flex-col gap-space-md lg:self-start">
+      <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 md:gap-space-md">
+        <a
+          href="#catalogo-packs"
+          class="inline-flex items-center justify-center gap-space-xs px-space-xl py-3.5 md:py-space-md min-h-12 rounded-full bg-mocha md:bg-honey text-eggshell md:text-roasted text-label-lg font-bold shadow-md transition-all duration-200 hover:bg-mocha-hover md:hover:bg-secondary-container hover:-translate-y-0.5"
+        >
+          <span>Ver Packs desde S/ 10</span>
+          <ArrowDownIcon class="w-4 h-4" aria-hidden="true" />
+        </a>
+
+        <a
+          href={heroWhatsAppUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-space-xs px-space-lg py-3 md:py-space-md min-h-12 rounded-full bg-secondary-fixed md:bg-eggshell border border-caramel/50 text-on-secondary-fixed md:text-mocha text-label-lg transition-all duration-200 hover:bg-surface-container-high hover:-translate-y-0.5"
+        >
+          <WhatsAppIcon class="w-4 h-4 text-secondary shrink-0" aria-hidden="true" />
+          <span class="md:hidden">
+            Atención Inmediata: {SITE_CONFIG.phoneDisplay}
+          </span>
+          <span class="hidden md:inline">Comprar por WhatsApp</span>
+        </a>
+      </div>
+
+      <div class="pt-1 flex items-center gap-space-md">
+        <div class="flex -space-x-2" aria-hidden="true">
+          <span
+            class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-secondary-fixed border-2 border-surface-container-lowest flex items-center justify-center text-primary font-bold text-label-sm shadow-xs"
+          >
+            GS
+          </span>
+          <span
+            class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary-fixed border-2 border-surface-container-lowest flex items-center justify-center text-primary font-bold text-label-sm shadow-xs"
+          >
+            LR
+          </span>
+          <span
+            class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-tertiary-fixed border-2 border-surface-container-lowest flex items-center justify-center text-primary font-bold text-label-sm shadow-xs"
+          >
+            MA
+          </span>
+        </div>
+        <div>
+          <div class="flex items-center gap-0.5 text-honey" aria-label="Calificación de 5 estrellas">
+            <StarIcon class="w-4 h-4" aria-hidden="true" />
+            <StarIcon class="w-4 h-4" aria-hidden="true" />
+            <StarIcon class="w-4 h-4" aria-hidden="true" />
+            <StarIcon class="w-4 h-4" aria-hidden="true" />
+            <StarIcon class="w-4 h-4" aria-hidden="true" />
+          </div>
+          <p class="text-label-sm font-medium text-on-surface-variant mt-0.5">
+            +1,200 perritos felices en Lima Metropolitana
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,60 @@
+---
+import BoltIcon from '@/assets/icons/bolt.svg';
+import LeafIcon from '@/assets/icons/leaf.svg';
+import PhoneIcon from '@/assets/icons/phone.svg';
+import TruckIcon from '@/assets/icons/truck.svg';
+import { SITE_CONFIG, buildWhatsAppUrl } from '@/data/doglife';
+
+const quickCallUrl = buildWhatsAppUrl('Hola DogLife, quiero hacer un pedido express en Lima');
+---
+
+<aside
+  aria-label="Avisos de envío y atención"
+  class="w-full bg-secondary-fixed text-on-secondary-fixed md:bg-surface-container md:text-on-surface py-2 md:py-space-xs px-margin-mobile md:px-margin border-b border-craft-border/50"
+>
+  <div class="max-w-[1280px] mx-auto flex items-center justify-between gap-space-xs flex-wrap">
+    <!-- Mobile Compact Notice -->
+    <div class="flex md:hidden items-center gap-1.5 min-w-0">
+      <TruckIcon class="w-4 h-4 text-secondary shrink-0" aria-hidden="true" />
+      <p class="text-label-sm truncate">Envíos Lima • 100% Natural</p>
+    </div>
+    <a
+      href={quickCallUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex md:hidden items-center gap-1 bg-surface-container-lowest px-2.5 py-1 min-h-7 rounded-full text-secondary shadow-xs active:scale-95 transition-transform shrink-0"
+    >
+      <PhoneIcon class="w-3.5 h-3.5" aria-hidden="true" />
+      <span class="text-label-sm font-bold">{SITE_CONFIG.phoneDisplay}</span>
+    </a>
+
+    <!-- Desktop Full Express Strip -->
+    <div class="hidden md:flex items-center gap-space-xs">
+      <span
+        class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-secondary text-on-secondary"
+      >
+        <BoltIcon class="w-3.5 h-3.5" aria-hidden="true" />
+      </span>
+      <p class="text-label-sm text-on-surface tracking-wide">
+        <strong class="font-bold text-secondary">Delivery Mismo Día</strong> en{' '}
+        {SITE_CONFIG.expressDistricts}
+      </p>
+    </div>
+
+    <div class="hidden md:flex items-center gap-space-md text-label-sm text-on-surface-variant">
+      <span class="flex items-center gap-space-xs">
+        <LeafIcon class="w-4 h-4 text-sage" aria-hidden="true" />
+        <span>Ingrediente Único: 100% Pata de Pollo Criollo</span>
+      </span>
+      <a
+        href={quickCallUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-space-xs text-primary font-bold hover:text-mocha-hover transition-colors"
+      >
+        <PhoneIcon class="w-4 h-4 text-secondary" aria-hidden="true" />
+        <span>Atención: {SITE_CONFIG.phoneDisplay}</span>
+      </a>
+    </div>
+  </div>
+</aside>

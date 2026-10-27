@@ -1,0 +1,121 @@
+---
+import PawIcon from '@/assets/icons/paw.svg';
+import VerifiedIcon from '@/assets/icons/verified.svg';
+import TruckIcon from '@/assets/icons/truck.svg';
+import ClockIcon from '@/assets/icons/clock.svg';
+import MailIcon from '@/assets/icons/mail.svg';
+import WhatsAppIcon from '@/assets/icons/whatsapp.svg';
+import { SITE_CONFIG, buildWhatsAppUrl } from '@/data/doglife';
+
+const footerChatUrl = buildWhatsAppUrl(
+  'Hola DogLife Store, tengo una consulta sobre la porción ideal para mi mascota'
+);
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+  class="w-full bg-surface-container-low text-on-surface-variant border-t border-craft-border pb-24 md:pb-0"
+>
+  <div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin pt-space-xl pb-space-lg">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-lg lg:gap-space-xl mb-space-xl">
+      <!-- Brand Story & Origin Seal -->
+      <div class="space-y-space-sm">
+        <div class="flex items-center gap-space-xs">
+          <PawIcon class="w-7 h-7 text-mocha" aria-hidden="true" />
+          <span class="font-display text-headline-sm text-primary">{SITE_CONFIG.brandName}</span>
+        </div>
+        <p class="text-body-md text-on-surface-variant leading-relaxed">
+          Snacks 100% naturales deshidratados artesanalmente en Lima, Perú. Pureza de ingrediente
+          único para la salud articular y dental de tu engreído.
+        </p>
+        <div
+          class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-pill-bg border border-pill-border text-mocha text-label-sm"
+        >
+          <VerifiedIcon class="w-4 h-4 text-sage" aria-hidden="true" />
+          <span>Elaborado en Lima, Perú • 100% Natural</span>
+        </div>
+      </div>
+
+      <!-- Explore Store -->
+      <div class="space-y-space-sm">
+        <h2 class="text-title-md text-on-surface">Explorar Tienda</h2>
+        <ul role="list" class="space-y-space-xs text-body-sm">
+          <li>
+            <a href="#catalogo-packs" class="hover:text-primary transition-colors inline-block py-0.5">
+              Packs Patitas 15u, ½ kg &amp; 1 kg
+            </a>
+          </li>
+          <li>
+            <a href="#beneficios" class="hover:text-primary transition-colors inline-block py-0.5">
+              Colágeno y Salud Articular
+            </a>
+          </li>
+          <li>
+            <a href="#seguridad-faq" class="hover:text-primary transition-colors inline-block py-0.5">
+              Guía de Consumo Seguro &amp; FAQ
+            </a>
+          </li>
+          <li>
+            <a href="#como-pedir" class="hover:text-primary transition-colors inline-block py-0.5">
+              Cómo Pedir en Lima
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Support & Shipping -->
+      <div class="space-y-space-sm">
+        <h2 class="text-title-md text-on-surface">Atención &amp; Envíos</h2>
+        <ul role="list" class="space-y-space-xs text-body-sm">
+          <li class="flex items-start gap-space-xs">
+            <TruckIcon class="w-4 h-4 text-secondary shrink-0 mt-0.5" aria-hidden="true" />
+            <span>Envíos a todo Lima Metropolitana y Provincias</span>
+          </li>
+          <li class="flex items-start gap-space-xs">
+            <ClockIcon class="w-4 h-4 text-secondary shrink-0 mt-0.5" aria-hidden="true" />
+            <span>{SITE_CONFIG.schedule}</span>
+          </li>
+          <li class="flex items-start gap-space-xs">
+            <MailIcon class="w-4 h-4 text-secondary shrink-0 mt-0.5" aria-hidden="true" />
+            <a href={`mailto:${SITE_CONFIG.email}`} class="hover:text-primary transition-colors">
+              {SITE_CONFIG.email}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Express WhatsApp Help -->
+      <div class="space-y-space-sm">
+        <h2 class="text-title-md text-on-surface">Atención Express</h2>
+        <p class="text-body-sm text-on-surface-variant">
+          ¿Tienes dudas sobre el tamaño o porción para tu mascota? Escríbenos directamente.
+        </p>
+        <a
+          href={footerChatUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-space-xs w-full px-space-md py-2.5 min-h-11 rounded-full bg-honey text-roasted text-label-lg font-bold transition-colors hover:bg-secondary-container shadow-xs"
+        >
+          <WhatsAppIcon class="w-4 h-4 shrink-0" aria-hidden="true" />
+          <span>Chatear por WhatsApp</span>
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="pt-space-md border-t border-craft-border flex flex-col md:flex-row items-center justify-between gap-space-sm text-label-sm font-medium text-on-surface-variant"
+    >
+      <p>
+        © {currentYear} {SITE_CONFIG.brandName}. Todos los derechos reservados. RUC {SITE_CONFIG.ruc}.
+      </p>
+      <div class="flex items-center gap-space-md">
+        <a href="#como-pedir" class="hover:text-primary transition-colors">
+          Condiciones de Envío
+        </a>
+        <a href={footerChatUrl} target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">
+          Atención al Cliente
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

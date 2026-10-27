@@ -1,0 +1,154 @@
+---
+import { Image } from 'astro:assets';
+import LockIcon from '@/assets/icons/lock.svg';
+import CheckCircleIcon from '@/assets/icons/check-circle.svg';
+import ShoppingBagIcon from '@/assets/icons/shopping-bag.svg';
+import WhatsAppIcon from '@/assets/icons/whatsapp.svg';
+import { PACKS, buildWhatsAppUrl } from '@/data/doglife';
+---
+
+<section
+  id="catalogo-packs"
+  style="--section-intrinsic-height: 820px;"
+  class="deferred-section w-full bg-surface-container py-8 md:py-[72px] px-margin-mobile md:px-margin"
+>
+  <div class="max-w-[1280px] mx-auto space-y-6 md:space-y-space-xl">
+    <!-- Header & Freshness Guarantee Seal -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md text-center md:text-left">
+      <div class="space-y-1">
+        <span class="text-label-sm uppercase tracking-widest text-secondary">
+          Packs &amp; Precios
+        </span>
+        <h2 class="fluid-section-title text-primary">
+          <span class="md:hidden">Elige el Premio Ideal</span>
+          <span class="hidden md:inline">Elige el formato ideal para tu hogar</span>
+        </h2>
+        <p class="text-body-sm md:text-body-md text-on-surface-variant max-w-md mx-auto md:mx-0">
+          Presentaciones herméticas con cierre ziploc elaboradas cada semana en Lima para conservar
+          su crocancia.
+        </p>
+      </div>
+
+      <div
+        class="self-center md:self-auto inline-flex items-center gap-space-xs bg-eggshell border border-craft-border px-space-md py-space-xs rounded-full shadow-xs text-mocha text-label-sm"
+      >
+        <LockIcon class="w-4 h-4 text-honey" aria-hidden="true" />
+        <span>Garantía de Frescura 6 Meses</span>
+      </div>
+    </div>
+
+    <!-- 3 Product Pack Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md md:gap-space-lg items-stretch">
+      {
+        PACKS.map((pack) => {
+          const packUrl = buildWhatsAppUrl(pack.whatsappMessage);
+          return (
+            <article
+              class:list={[
+                'boutique-card rounded-2xl overflow-hidden flex flex-col justify-between relative',
+                pack.featured && 'ring-2 ring-honey md:-translate-y-2',
+              ]}
+            >
+              {pack.featuredBanner && (
+                <div class="bg-mocha text-secondary-fixed text-center py-1.5 px-3 text-label-sm uppercase tracking-wider">
+                  {pack.featuredBanner}
+                </div>
+              )}
+
+              <!-- Product Photography -->
+              <div class="relative bg-surface-container">
+                <Image
+                  src={pack.image}
+                  alt={pack.imageAlt}
+                  widths={[420, 760]}
+                  sizes="(max-width: 767px) 92vw, 33vw"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-48 md:h-56 object-cover"
+                />
+                <span
+                  class:list={[
+                    'absolute top-3 px-space-sm py-1 rounded-full shadow-xs text-label-sm',
+                    pack.featured
+                      ? 'right-3 bg-secondary-container text-on-secondary-container'
+                      : 'left-3 bg-pill-bg/95 border border-pill-border text-mocha',
+                  ]}
+                >
+                  {pack.tag}
+                </span>
+              </div>
+
+              <!-- Details & Pricing -->
+              <div class="p-4 md:p-space-lg space-y-space-md flex-1 flex flex-col justify-between">
+                <div class="space-y-space-xs">
+                  <span class="md:hidden text-label-sm text-secondary uppercase tracking-wider block">
+                    {pack.mobileTag}
+                  </span>
+                  <h3 class="font-display text-headline-sm md:text-headline-md text-primary">
+                    {pack.name}
+                  </h3>
+                  <p class="text-body-sm text-on-surface-variant">{pack.description}</p>
+
+                  <ul role="list" class="pt-space-xs space-y-1.5 text-body-sm text-on-surface">
+                    {pack.features.map((feat) => (
+                      <li class="flex items-start gap-space-xs">
+                        <CheckCircleIcon
+                          class="w-4 h-4 text-sage shrink-0 mt-0.5"
+                          aria-hidden="true"
+                        />
+                        <span>{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div class="pt-space-md border-t border-craft-border/70 space-y-space-sm">
+                  <div class="flex items-baseline justify-between gap-space-xs">
+                    <div class="flex items-baseline gap-1.5">
+                      <span class="text-label-sm font-medium text-on-surface-variant">
+                        Precio Lima
+                      </span>
+                      <span
+                        class:list={[
+                          'font-display text-headline-lg font-bold',
+                          pack.featured ? 'text-secondary' : 'text-primary',
+                        ]}
+                      >
+                        S/ {pack.price}
+                      </span>
+                      <span class="text-label-sm font-medium text-on-surface-variant">.00</span>
+                    </div>
+
+                    {pack.oldPrice ? (
+                      <span class="text-label-md text-outline line-through">
+                        Antes S/ {pack.oldPrice}
+                      </span>
+                    ) : (
+                      <span class="text-label-sm text-sage">{pack.stockNote}</span>
+                    )}
+                  </div>
+
+                  <a
+                    href={packUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class:list={[
+                      'w-full inline-flex items-center justify-center gap-space-xs py-3 px-space-md min-h-11 rounded-full text-label-lg transition-all duration-200',
+                      pack.featured
+                        ? 'bg-honey text-roasted font-bold shadow-sm hover:bg-secondary-container'
+                        : 'bg-mocha text-eggshell hover:bg-mocha-hover',
+                    ]}
+                  >
+                    <WhatsAppIcon class="w-4 h-4 shrink-0 md:hidden" aria-hidden="true" />
+                    <ShoppingBagIcon class="w-4 h-4 shrink-0 hidden md:block" aria-hidden="true" />
+                    <span>{pack.ctaLabel}</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

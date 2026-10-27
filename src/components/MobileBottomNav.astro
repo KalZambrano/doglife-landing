@@ -1,0 +1,61 @@
+---
+import StorefrontIcon from '@/assets/icons/storefront.svg';
+import PawIcon from '@/assets/icons/paw.svg';
+import VerifiedIcon from '@/assets/icons/verified.svg';
+import SupportAgentIcon from '@/assets/icons/support-agent.svg';
+import ShoppingBagIcon from '@/assets/icons/shopping-bag.svg';
+import { buildWhatsAppUrl } from '@/data/doglife';
+
+const mobileBagUrl = buildWhatsAppUrl(
+  'Hola DogLife Store, quiero armar mi pedido de patitas deshidratadas'
+);
+---
+
+<nav
+  aria-label="Navegación móvil inferior"
+  class="scrollspy-nav scrollspy-mobile md:hidden fixed inset-x-0 bottom-0 z-50 pb-safe bg-surface/94 backdrop-blur-xl shadow-bottom-bar border-t border-craft-border"
+>
+  <div class="flex justify-around items-center h-16 px-space-xs">
+    <a
+      href="#catalogo-packs"
+      class="flex flex-col items-center justify-center min-w-14 min-h-11 px-2 py-1 rounded-xl text-on-surface-variant transition-colors"
+    >
+      <StorefrontIcon class="w-5 h-5" aria-hidden="true" />
+      <span class="text-label-sm mt-0.5">Tienda</span>
+    </a>
+
+    <a
+      href="#beneficios"
+      class="flex flex-col items-center justify-center min-w-14 min-h-11 px-2 py-1 rounded-xl text-on-surface-variant transition-colors"
+    >
+      <PawIcon class="w-5 h-5" aria-hidden="true" />
+      <span class="text-label-sm mt-0.5">Beneficios</span>
+    </a>
+
+    <a
+      href="#seguridad-faq"
+      class="flex flex-col items-center justify-center min-w-14 min-h-11 px-2 py-1 rounded-xl text-on-surface-variant transition-colors"
+    >
+      <VerifiedIcon class="w-5 h-5" aria-hidden="true" />
+      <span class="text-label-sm mt-0.5">Garantía</span>
+    </a>
+
+    <a
+      href="#contacto"
+      class="flex flex-col items-center justify-center min-w-14 min-h-11 px-2 py-1 rounded-xl text-on-surface-variant transition-colors"
+    >
+      <SupportAgentIcon class="w-5 h-5" aria-hidden="true" />
+      <span class="text-label-sm mt-0.5">Contacto</span>
+    </a>
+
+    <a
+      href={mobileBagUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex flex-col items-center justify-center min-w-14 min-h-11 px-2 py-1 rounded-xl text-mocha font-bold transition-colors"
+    >
+      <ShoppingBagIcon class="w-5 h-5" aria-hidden="true" />
+      <span class="text-label-sm mt-0.5">Pedir</span>
+    </a>
+  </div>
+</nav>

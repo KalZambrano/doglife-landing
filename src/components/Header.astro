@@ -1,0 +1,136 @@
+---
+import PawIcon from '@/assets/icons/paw.svg';
+import DogLogoIcon from '@/assets/icons/dog-logo.svg';
+import WhatsAppIcon from '@/assets/icons/whatsapp.svg';
+import ShoppingBagIcon from '@/assets/icons/shopping-bag.svg';
+import UserIcon from '@/assets/icons/user.svg';
+import { buildWhatsAppUrl } from '@/data/doglife';
+
+const whatsappHeaderUrl = buildWhatsAppUrl(
+  'Hola DogLife Store, deseo pedir patitas deshidratadas para mi perrito'
+);
+---
+
+<header
+  class="fixed inset-x-0 top-0 z-50 bg-surface/90 backdrop-blur-xl shadow-header border-b border-craft-border/60"
+>
+  <a
+    href="#contenido-principal"
+    class="visually-hidden fixed top-3 left-3 z-50 rounded-full bg-mocha px-space-md py-space-xs text-label-lg text-eggshell shadow-lg"
+  >
+    Saltar al contenido principal
+  </a>
+
+  <div
+    class="h-16 md:h-20 max-w-[1280px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between gap-space-md"
+  >
+    <!-- Brand Identity (Mobile Boutique Badge + Desktop Editorial Wordmark) -->
+    <a
+      href="#inicio"
+      class="flex items-center gap-space-sm transition-transform duration-200 hover:scale-[1.01]"
+    >
+      <span
+        class="md:hidden w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-primary shadow-sm shrink-0"
+      >
+        <DogLogoIcon class="w-6 h-6" aria-hidden="true" />
+      </span>
+      <span class="hidden md:inline-flex text-mocha shrink-0">
+        <PawIcon class="w-7 h-7" aria-hidden="true" />
+      </span>
+      <span class="flex flex-col">
+        <span class="flex items-center gap-1.5">
+          <span class="font-display text-headline-sm text-primary tracking-tight leading-none">
+            DogLife
+          </span>
+          <span
+            class="md:hidden text-label-sm text-secondary tracking-widest uppercase bg-secondary-fixed/60 px-1.5 py-0.5 rounded-full"
+          >
+            Perú
+          </span>
+        </span>
+        <span class="md:hidden text-label-sm text-on-surface-variant font-medium">
+          Patitas Deshidratadas
+        </span>
+        <span
+          class="hidden md:block text-label-sm uppercase tracking-widest text-secondary -mt-0.5"
+        >
+          Store
+        </span>
+      </span>
+    </a>
+
+    <!-- Primary Desktop Navigation with CSS Scrollspy -->
+    <nav
+      aria-label="Principal"
+      class="scrollspy-nav scrollspy-desktop hidden md:flex items-center gap-space-xs"
+    >
+      <a
+        href="#inicio"
+        aria-current="true"
+        class="px-space-md py-space-xs rounded-full text-title-md text-on-surface-variant hover:text-on-surface transition-colors duration-150"
+      >
+        Inicio
+      </a>
+      <a
+        href="#beneficios"
+        class="px-space-md py-space-xs rounded-full text-title-md text-on-surface-variant hover:text-on-surface transition-colors duration-150"
+      >
+        Beneficios
+      </a>
+      <a
+        href="#catalogo-packs"
+        class="px-space-md py-space-xs rounded-full text-title-md text-on-surface-variant hover:text-on-surface transition-colors duration-150"
+      >
+        Packs
+      </a>
+      <a
+        href="#seguridad-faq"
+        class="px-space-md py-space-xs rounded-full text-title-md text-on-surface-variant hover:text-on-surface transition-colors duration-150"
+      >
+        FAQ
+      </a>
+    </nav>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-space-xs md:gap-space-md">
+      <!-- Mobile WhatsApp Tap Target (>= 44x44px) -->
+      <a
+        href={whatsappHeaderUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Pedir por WhatsApp"
+        class="sm:hidden min-w-11 min-h-11 rounded-full bg-sage/15 hover:bg-sage/25 flex items-center justify-center text-sage transition-colors"
+      >
+        <WhatsAppIcon class="w-5 h-5" aria-hidden="true" />
+      </a>
+
+      <!-- Desktop WhatsApp Pill CTA -->
+      <a
+        href={whatsappHeaderUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden sm:inline-flex items-center gap-space-xs px-space-md py-space-sm rounded-full bg-mocha text-eggshell text-label-lg transition-all duration-200 hover:bg-mocha-hover hover:-translate-y-0.5 shadow-sm"
+      >
+        <WhatsAppIcon class="w-4 h-4" aria-hidden="true" />
+        <span>WhatsApp</span>
+      </a>
+
+      <!-- Catalog Quick-Jump Bag -->
+      <a
+        href="#catalogo-packs"
+        aria-label="Ver catálogo de packs"
+        class="hidden md:flex relative min-w-10 min-h-10 p-space-xs text-on-surface-variant hover:text-primary transition-colors items-center justify-center rounded-full"
+      >
+        <ShoppingBagIcon class="w-6 h-6" aria-hidden="true" />
+        <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-honey"></span>
+      </a>
+
+      <span
+        aria-hidden="true"
+        class="w-9 h-9 rounded-full bg-primary flex items-center justify-center shrink-0 text-on-primary"
+      >
+        <UserIcon class="w-4 h-4" aria-hidden="true" />
+      </span>
+    </div>
+  </div>
+</header>
