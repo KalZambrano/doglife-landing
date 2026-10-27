@@ -1,11 +1,92 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import AnnouncementBar from '@/components/AnnouncementBar.astro';
+import HeroSection from '@/components/HeroSection.astro';
+import NutritionalBanner from '@/components/NutritionalBanner.astro';
+import BenefitsSection from '@/components/BenefitsSection.astro';
+import PacksCatalog from '@/components/PacksCatalog.astro';
+import NutritionSafetySection from '@/components/NutritionSafetySection.astro';
+import OrderStepsSection from '@/components/OrderStepsSection.astro';
+import TestimonialsSection from '@/components/TestimonialsSection.astro';
+import FinalCtaBanner from '@/components/FinalCtaBanner.astro';
+import Footer from '@/components/Footer.astro';
+import MobileBottomNav from '@/components/MobileBottomNav.astro';
 ---
 
 <Layout>
-	<Welcome />
+  <Header />
+
+  <main class="w-full pt-16 md:pt-20 flex-1 flex flex-col">
+    <AnnouncementBar />
+    <HeroSection />
+    <NutritionalBanner />
+    <BenefitsSection />
+    <PacksCatalog />
+    <NutritionSafetySection />
+    <OrderStepsSection />
+    <TestimonialsSection />
+    <FinalCtaBanner />
+  </main>
+
+  <Footer />
+  <MobileBottomNav />
 </Layout>
+
+<script>
+  const navGroups = document.querySelectorAll<HTMLElement>('.scrollspy-nav');
+  const supportsScrollTargetGroup =
+    typeof CSS !== 'undefined' && CSS.supports('scroll-target-group: auto');
+
+  if (supportsScrollTargetGroup) {
+    const syncAriaCurrent = () => {
+      navGroups.forEach((nav) => {
+        const currentLink = nav.querySelector<HTMLAnchorElement>('a:target-current');
+        nav.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((link) => {
+          if (link === currentLink) {
+            link.setAttribute('aria-current', 'true');
+          } else {
+            link.removeAttribute('aria-current');
+          }
+        });
+      });
+    };
+
+    syncAriaCurrent();
+    document.addEventListener('scrollend', syncAriaCurrent, { passive: true });
+  } else {
+    const fragmentLinks = document.querySelectorAll<HTMLAnchorElement>(
+      '.scrollspy-nav a[href^="#"]'
+    );
+    const trackedIds = new Set(
+      Array.from(fragmentLinks)
+        .map((link) => link.getAttribute('href')?.slice(1))
+        .filter((id): id is string => Boolean(id))
+    );
+    const sections = Array.from(trackedIds)
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => Boolean(el));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            fragmentLinks.forEach((link) => {
+              const isActive = link.getAttribute('href') === `#${id}`;
+              link.classList.toggle(':target-current', isActive);
+              if (isActive) {
+                link.setAttribute('aria-current', 'true');
+              } else {
+                link.removeAttribute('aria-current');
+              }
+            });
+          }
+        });
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  }
+</script>
