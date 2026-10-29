@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 228 148" fill="none">
+  <!-- Soft ambient ground shadow -->
+  <ellipse cx="118" cy="136" rx="94" ry="7.5" fill="var(--color-mocha)" fill-opacity="0.11" />
+
+  <!-- Cozy Home in Background-Right -->
+  <g>
+    <!-- Chimney -->
+    <rect x="175" y="22" width="12" height="24" rx="2" fill="var(--color-clay)" />
+    <rect x="173" y="20" width="16" height="4" rx="1.5" fill="var(--color-mocha)" />
+
+    <!-- House Walls -->
+    <rect x="118" y="54" width="76" height="72" rx="4" fill="var(--color-secondary-fixed)" />
+    <rect x="118" y="54" width="76" height="6" fill="var(--color-secondary-fixed-dim)" />
+
+    <!-- Terracotta Pitched Roof -->
+    <path d="M108 58 L156 18 L204 58 Z" fill="var(--color-clay)" />
+    <path
+      d="M112 58 L156 21.5 L200 58"
+      stroke="var(--color-primary-fixed-dim)"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <!-- Front Door & Window -->
+    <rect x="129" y="78" width="22" height="48" rx="3" fill="var(--color-mocha)" />
+    <circle cx="146" cy="103" r="2" fill="var(--color-secondary-container)" />
+
+    <rect
+      x="162"
+      y="70"
+      width="21"
+      height="20"
+      rx="3"
+      fill="var(--color-warm-milk)"
+      stroke="var(--color-caramel)"
+      stroke-width="2"
+    />
+    <path d="M172.5 71 V89 M163 80 H182" stroke="var(--color-caramel)" stroke-width="1.5" />
+  </g>
+
+  <!-- Friendly Delivery Courier on Left -->
+  <g>
+    <!-- Trousers & Shoes -->
+    <rect x="44" y="92" width="10.5" height="36" rx="4" fill="var(--color-primary)" />
+    <rect x="57.5" y="92" width="10.5" height="36" rx="4" fill="var(--color-primary)" />
+    <ellipse cx="48" cy="130" rx="7.5" ry="4.5" fill="var(--color-roasted)" />
+    <ellipse cx="64" cy="130" rx="7.5" ry="4.5" fill="var(--color-roasted)" />
+
+    <!-- Uniform Shirt -->
+    <rect x="39" y="55" width="34" height="41" rx="9" fill="var(--color-honey)" />
+    <path d="M50 55 L56 62 L62 55" fill="var(--color-mocha)" />
+
+    <!-- Neck & Smiling Face -->
+    <rect x="52" y="47" width="8" height="10" rx="3" fill="var(--color-primary-fixed-dim)" />
+    <circle cx="42" cy="39" r="3.5" fill="var(--color-primary-fixed-dim)" />
+    <circle cx="70" cy="39" r="3.5" fill="var(--color-primary-fixed-dim)" />
+    <circle cx="56" cy="38" r="14" fill="var(--color-primary-fixed)" />
+    <circle cx="51" cy="38" r="2" fill="var(--color-primary)" />
+    <circle cx="61" cy="38" r="2" fill="var(--color-primary)" />
+    <path
+      d="M52 43.5 Q56 47 60 43.5"
+      stroke="var(--color-mocha)"
+      stroke-width="1.8"
+      stroke-linecap="round"
+    />
+
+    <!-- Delivery Cap -->
+    <path d="M42 34 C42 22 70 22 70 34 Z" fill="var(--color-honey)" />
+    <path d="M42 33 Q58 30 75 35 Q62 37.5 42 35 Z" fill="var(--color-mocha)" />
+
+    <!-- DogLife Kraft Parcel Box & Hands -->
+    <rect x="44" y="66" width="34" height="26" rx="3.5" fill="var(--color-secondary-fixed-dim)" />
+    <rect x="44" y="66" width="34" height="6" rx="2" fill="var(--color-secondary-container)" />
+    <rect x="58" y="66" width="6" height="11" rx="1" fill="var(--color-warm-milk)" fill-opacity="0.8" />
+    <circle cx="61" cy="83.5" r="2.8" fill="var(--color-mocha)" fill-opacity="0.45" />
+    <circle cx="43.5" cy="80" r="5" fill="var(--color-primary-fixed)" />
+    <circle cx="78.5" cy="80" r="5" fill="var(--color-primary-fixed)" />
+  </g>
+
+  <!-- Excited Golden Dog Greeting Courier in Center -->
+  <g>
+    <!-- Wagging tail -->
+    <path
+      d="M115 121 Q127 115 124 103"
+      stroke="var(--color-caramel)"
+      stroke-width="5"
+      stroke-linecap="round"
+    />
+    <!-- Raised paw greeting courier -->
+    <path
+      d="M95 107 Q85 102 82 95"
+      stroke="var(--color-honey)"
+      stroke-width="6"
+      stroke-linecap="round"
+    />
+    <!-- Seated body -->
+    <ellipse cx="105" cy="115" rx="13" ry="18" fill="var(--color-honey)" />
+    <ellipse cx="99" cy="115" rx="7" ry="12" fill="var(--color-secondary-fixed)" />
+    <rect x="95" y="116" width="6.5" height="17" rx="3.2" fill="var(--color-honey)" />
+    <ellipse cx="111" cy="130" rx="8" ry="5" fill="var(--color-caramel)" />
+
+    <!-- Dog Head Looking Up at Box -->
+    <circle cx="101" cy="88" r="12.5" fill="var(--color-honey)" />
+    <ellipse cx="91" cy="90" rx="7.5" ry="5.5" fill="var(--color-secondary-fixed)" />
+    <path d="M88.5 93 Q90 98.5 93 93 Z" fill="var(--color-clay)" />
+    <circle cx="85.5" cy="88" r="2.5" fill="var(--color-primary)" />
+    <circle cx="97" cy="85" r="2.2" fill="var(--color-primary)" />
+    <circle cx="96.3" cy="84.3" r="0.75" fill="var(--color-warm-milk)" />
+    <ellipse
+      cx="109"
+      cy="89"
+      rx="5"
+      ry="9.5"
+      transform="rotate(-12 109 89)"
+      fill="var(--color-mocha)"
+    />
+    <rect x="94" y="98" width="14" height="4" rx="2" fill="var(--color-clay)" />
+  </g>
+
+  <!-- Express Delivery Van on Lower-Right -->
+  <g>
+    <!-- Cargo Box -->
+    <rect
+      x="144"
+      y="84"
+      width="42"
+      height="38"
+      rx="6"
+      fill="var(--color-secondary-container)"
+      stroke="var(--color-honey)"
+      stroke-width="1.5"
+    />
+    <path
+      d="M153 101 H171 M157 106.5 H168"
+      stroke="var(--color-caramel)"
+      stroke-width="2.5"
+      stroke-linecap="round"
+    />
+
+    <!-- Cab & Friendly Windshield -->
+    <path
+      d="M182 92 H203 C209 92 213 97 214 104 L215 122 H182 Z"
+      fill="var(--color-honey)"
+    />
+    <path
+      d="M187 96 H203 C206.5 96 209 99 210 106.5 H187 Z"
+      fill="var(--color-warm-milk)"
+    />
+    <circle cx="194" cy="101" r="1.4" fill="var(--color-primary)" />
+    <circle cx="203" cy="101" r="1.4" fill="var(--color-primary)" />
+    <path
+      d="M196 103.5 Q198.5 105.5 201 103.5"
+      stroke="var(--color-primary)"
+      stroke-width="1.2"
+      stroke-linecap="round"
+    />
+
+    <!-- Headlight, Bumper & Wheels -->
+    <circle cx="212" cy="114" r="2.5" fill="var(--color-warm-milk)" />
+    <rect x="142" y="120" width="75" height="5" rx="2.5" fill="var(--color-mocha)" />
+    <circle cx="160" cy="126.5" r="7.5" fill="var(--color-primary)" />
+    <circle cx="160" cy="126.5" r="3" fill="var(--color-warm-milk)" />
+    <circle cx="198" cy="126.5" r="7.5" fill="var(--color-primary)" />
+    <circle cx="198" cy="126.5" r="3" fill="var(--color-warm-milk)" />
+  </g>
+</svg>
