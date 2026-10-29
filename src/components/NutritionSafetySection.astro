@@ -3,16 +3,15 @@ import ChartBarIcon from '@/assets/icons/chart-bar.svg';
 import JointIcon from '@/assets/icons/joint.svg';
 import PawIcon from '@/assets/icons/paw.svg';
 import WaterDropIcon from '@/assets/icons/water-drop.svg';
-import ChevronDownIcon from '@/assets/icons/chevron-down.svg';
-import { COMPOSITION_METRICS, FAQ_ITEMS } from '@/data/doglife';
+import { COMPOSITION_METRICS } from '@/data/doglife';
 ---
 
 <section
   id="seguridad-faq"
   style="--section-intrinsic-height: 700px;"
-  class="deferred-section w-full bg-surface md:bg-surface-container-lowest py-8 md:py-[72px] px-margin-mobile md:px-margin"
+  class="deferred-section w-full bg-surface md:bg-surface-container-lowest py-8 md:py-18 px-margin-mobile md:px-margin"
 >
-  <div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-lg lg:gap-space-xl items-start">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-lg lg:gap-space-xl items-start">
     <!-- Left Column: Guaranteed Bromatological Analysis -->
     <div
       class="lg:col-span-6 space-y-space-md bg-surface-container-low border border-craft-border p-5 md:p-space-xl rounded-2xl shadow-ambient"
@@ -108,29 +107,6 @@ import { COMPOSITION_METRICS, FAQ_ITEMS } from '@/data/doglife';
             </p>
           </div>
         </div>
-      </div>
-
-      <!-- Exclusive Native <details> FAQ Set -->
-      <div class="space-y-space-xs pt-space-xs">
-        {
-          FAQ_ITEMS.map((faq) => (
-            <details
-              name="faq-doglife"
-              class="faq-disclosure rounded-xl bg-eggshell border border-craft-border px-space-md py-3 shadow-2xs"
-            >
-              <summary class="cursor-pointer flex items-center justify-between gap-space-sm text-title-md text-primary min-h-8">
-                <span>{faq.question}</span>
-                <ChevronDownIcon
-                  class="faq-chevron w-5 h-5 text-caramel shrink-0 transition-transform duration-200"
-                  aria-hidden="true"
-                />
-              </summary>
-              <p class="pt-space-sm text-body-sm text-on-surface-variant leading-relaxed border-t border-craft-border/60 mt-space-xs">
-                {faq.answer}
-              </p>
-            </details>
-          ))
-        }
       </div>
     </div>
   </div>
