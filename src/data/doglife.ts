@@ -79,6 +79,7 @@ export interface PackItem {
   imageAlt: string;
   features: string[];
   price: number;
+  priceNote: string;
   oldPrice?: number;
   stockNote: string;
   featured?: boolean;
@@ -99,12 +100,14 @@ export const PACKS: PackItem[] = [
     imageAlt:
       'Bolsa artesanal de papel kraft con 15 patitas de pollo deshidratadas crujientes sobre madera natural',
     features: [
-      'Aprox. 15 patitas seleccionadas',
-      'Cierre hermético reutilizable',
+      'Patitas crujientes seleccionadas',
+      'Bolsa resellable con cierre hermético',
+      'Ideal para probar el snack o razas pequeñas',
     ],
     price: 10,
+    priceNote: 'bolsa',
     stockNote: 'Stock Diario',
-    ctaLabel: 'Pedir Pack 15 Patitas (S/ 10)',
+    ctaLabel: 'Pedir',
     whatsappMessage: 'Hola DogLife, deseo pedir el Pack 15 Patitas a S/ 10',
   },
   {
@@ -120,15 +123,16 @@ export const PACKS: PackItem[] = [
     imageAlt:
       'Empaque kraft de medio kilogramo DogLife Store lleno de patitas de pollo deshidratadas doradas',
     features: [
-      'Aprox. 35 - 40 patitas deshidratadas',
       'Ahorro del 25% frente a bolsas individuales',
+      'Deshidratación lenta para máxima crocancia',
       'Uñas retiradas y envase triple capa contra humedad',
     ],
     price: 25,
+    priceNote: 'aprox. 35–40 patitas',
     oldPrice: 29,
     stockNote: 'Ahorro Medio',
     featured: true,
-    ctaLabel: 'Pedir Pack ½ kg Favorito (S/ 25)',
+    ctaLabel: 'Pedir',
     whatsappMessage: 'Hola DogLife, deseo pedir el Pack 1/2 kg (500g) a S/ 25',
   },
   {
@@ -143,14 +147,15 @@ export const PACKS: PackItem[] = [
     imageAlt:
       'Bolsa familiar de 1 kilogramo de patitas de pollo deshidratadas artesanales sobre lienzo de yute',
     features: [
-      'Aprox. 75 - 85 patitas deshidratadas',
-      'Costo por patita más bajo del catálogo',
+      'Mejor precio por patita del catálogo',
+      'Ideal para hogares con varios perros o razas grandes',
       'Despacho preferencial prioritario',
     ],
     price: 35,
+    priceNote: 'aprox. 75–85 patitas',
     oldPrice: 48,
     stockNote: 'Máximo Ahorro',
-    ctaLabel: 'Pedir Pack 1 kg Familiar (S/ 35)',
+    ctaLabel: 'Pedir',
     whatsappMessage: 'Hola DogLife, deseo pedir el Pack Familiar de 1 kg a S/ 35',
   },
 ];
@@ -215,34 +220,47 @@ export const FAQ_ITEMS: FaqItem[] = [
 ];
 
 export interface OrderStep {
+  id: 'whatsapp' | 'delivery' | 'payment';
   step: number;
+  shortLabel: string;
   title: string;
   description: string;
+  highlightBadge?: string;
   badgeText?: string;
+  footerIcon?: 'whatsapp' | 'truck';
   paymentTags?: string[];
 }
 
 export const ORDER_STEPS: OrderStep[] = [
   {
+    id: 'whatsapp',
     step: 1,
+    shortLabel: 'WhatsApp',
     title: 'Escríbenos por WhatsApp',
     description:
       'Elige tu pack (S/ 10, S/ 25 o S/ 35) y compártenos tu distrito y dirección de entrega.',
     badgeText: 'Respuesta inmediata',
+    footerIcon: 'whatsapp',
   },
   {
+    id: 'delivery',
     step: 2,
-    title: 'Paga con Yape, Plin o Transferencia',
-    description:
-      'Aceptamos todos los canales digitales sin comisiones ni recargos adicionales.',
-    paymentTags: ['Yape', 'Plin', 'BCP / BBVA', 'Contraentrega'],
-  },
-  {
-    step: 3,
+    shortLabel: 'Entrega',
     title: 'Recibe en tu Puerta',
     description:
       'Coordinamos el motorizado con seguimiento en tiempo real hasta tu domicilio o veterinaria.',
     badgeText: 'Todo Lima y Callao',
+    footerIcon: 'truck',
+  },
+  {
+    id: 'payment',
+    step: 3,
+    shortLabel: 'Pago',
+    title: 'Paga con Yape, Plin o Transferencia',
+    description:
+      'Aceptamos todos los canales digitales sin comisiones ni recargos adicionales.',
+    highlightBadge: 'Contraentrega',
+    paymentTags: ['Yape', 'Plin', 'BCP / BBVA'],
   },
 ];
 
