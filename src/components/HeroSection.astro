@@ -9,6 +9,7 @@ import ArrowDownIcon from '@/assets/icons/arrow-down.svg';
 import WhatsAppIcon from '@/assets/icons/whatsapp.svg';
 import ShieldCheckIcon from '@/assets/icons/shield-check.svg';
 import LeafIcon from '@/assets/icons/leaf.svg';
+import HeroPawTrail from '@/components/HeroPawTrail.astro';
 import { SITE_CONFIG, buildWhatsAppUrl } from '@/data/doglife';
 
 const heroDesktopWebp = await getImage({ src: heroDesktopSrc, format: 'webp', quality: 84 });
@@ -30,13 +31,8 @@ const heroWhatsAppUrl = buildWhatsAppUrl(
   >
   </div>
 
-  <!-- Mobile Subtle Paw Watermark -->
-  <div
-    aria-hidden="true"
-    class="md:hidden absolute -right-6 top-8 opacity-5 pointer-events-none select-none text-primary"
-  >
-    <PawIcon class="w-44 h-44" aria-hidden="true" />
-  </div>
+  <!-- Animated Entrance Puppy Paw Trail -->
+  <HeroPawTrail />
 
   <div
     class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-y-5 lg:gap-y-space-md lg:gap-x-space-xl items-center relative z-10"

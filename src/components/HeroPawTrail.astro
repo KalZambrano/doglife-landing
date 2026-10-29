@@ -1,0 +1,109 @@
+---
+import PawPrintIcon from '@/assets/icons/paw-print.svg';
+
+interface PawStep {
+  x: number;
+  y: number;
+  r: number;
+}
+
+// Panoramic desktop puppy-walk path: enters top-left margin, rounds beneath CTAs & social proof,
+// climbs the center corridor beside the DogLife bag (matching reference), arcs over the photo,
+// and trots down the right margin.
+const DESKTOP_PAW_STEPS: PawStep[] = [
+  { x: 5.3, y: 3.5, r: -183.3 },
+  { x: 1.7, y: 12.8, r: -173.1 },
+  { x: 5.1, y: 26.4, r: 173.5 },
+  { x: 1.8, y: 36.3, r: 181.9 },
+  { x: 5.7, y: 49, r: 166.5 },
+  { x: 3.3, y: 60.4, r: 165.1 },
+  { x: 8.7, y: 68.9, r: 143.2 },
+  { x: 8.4, y: 81.8, r: 139.6 },
+  { x: 14.7, y: 81.8, r: 105.3 },
+  { x: 17.5, y: 92.6, r: 106.3 },
+  { x: 23.3, y: 86, r: 90.7 },
+  { x: 26.8, y: 95.4, r: 99.3 },
+  { x: 32.4, y: 87.5, r: 86.4 },
+  { x: 36.2, y: 96.1, r: 93.5 },
+  { x: 41.2, y: 86.4, r: 74.9 },
+  { x: 45.9, y: 91.7, r: 69.5 },
+  { x: 48.1, y: 76.7, r: 36.9 },
+  { x: 53.2, y: 74.6, r: 41.3 },
+  { x: 53, y: 58.5, r: 20.4 },
+  { x: 57.6, y: 53.3, r: 28.3 },
+  { x: 56.1, y: 37.8, r: 7.6 },
+  { x: 60.3, y: 30.6, r: 20.8 },
+  { x: 60.3, y: 14.6, r: 45.9 },
+  { x: 65.3, y: 17.2, r: 73.2 },
+  { x: 69.6, y: 5.5, r: 75.2 },
+  { x: 73.8, y: 12.8, r: 89.3 },
+  { x: 79, y: 3.4, r: 84.6 },
+  { x: 82.7, y: 12.4, r: 100.5 },
+  { x: 88.8, y: 7.3, r: 110 },
+  { x: 90.1, y: 19.8, r: 137.1 },
+  { x: 96.1, y: 24.9, r: 144.7 },
+  { x: 94.6, y: 37.2, r: 164.9 },
+  { x: 98.8, y: 48.8, r: 171.9 },
+  { x: 95.5, y: 58.6, r: -173.2 },
+  { x: 98.5, y: 72.6, r: -180.5 },
+  { x: 94.5, y: 80.7, r: -161.4 },
+  { x: 96.3, y: 96, r: -167.5 },
+];
+
+// Art-directed mobile/tablet puppy-walk S-curve from top-right down toward CTAs & social proof.
+const MOBILE_PAW_STEPS: PawStep[] = [
+  { x: 89.8, y: 4.2, r: -123.5 },
+  { x: 76.2, y: 3.5, r: -114.1 },
+  { x: 66.5, y: 11.1, r: -128.2 },
+  { x: 52.8, y: 10.9, r: -116.9 },
+  { x: 43.6, y: 18.6, r: -129.2 },
+  { x: 30, y: 18.9, r: -124.1 },
+  { x: 24.4, y: 27.5, r: -146.6 },
+  { x: 11.6, y: 30, r: -145.7 },
+  { x: 13.4, y: 39, r: -174.6 },
+  { x: 4.8, y: 44.4, r: -174.2 },
+  { x: 13.1, y: 52.4, r: 169.8 },
+  { x: 6.9, y: 58.6, r: 176.3 },
+  { x: 17.6, y: 65.8, r: 159.6 },
+  { x: 14.2, y: 72.6, r: 160.1 },
+  { x: 29.9, y: 76, r: 113.9 },
+  { x: 37.5, y: 81.7, r: 110.5 },
+  { x: 55.3, y: 80.1, r: 105.4 },
+  { x: 61.4, y: 86.4, r: 131.7 },
+  { x: 78.3, y: 88.6, r: 128.2 },
+  { x: 81.1, y: 95.5, r: 140 },
+];
+---
+
+<div
+  aria-hidden="true"
+  class="pointer-events-none select-none absolute inset-0 z-0 overflow-hidden"
+>
+  <!-- Desktop Panoramic Puppy Walk Trail -->
+  <div class="hero-paw-trail hidden lg:block relative w-full max-w-[1520px] h-full mx-auto">
+    {
+      DESKTOP_PAW_STEPS.map((paw, index) => (
+        <span
+          class="hero-paw-step w-14 h-14 xl:w-16 xl:h-16"
+          style={`--paw-x: ${paw.x}%; --paw-y: ${paw.y}%; --paw-angle: ${paw.r}deg; --sibling-index: ${index + 1};`}
+        >
+          <PawPrintIcon class="w-full h-full" aria-hidden="true" />
+        </span>
+      ))
+    }
+  </div>
+
+  <!-- Mobile & Tablet Puppy Walk Trail -->
+  <div class="hero-paw-trail lg:hidden relative w-full h-full">
+    {
+      MOBILE_PAW_STEPS.map((paw, index) => (
+        <span
+          class="hero-paw-step w-10 h-10 sm:w-12 sm:h-12"
+          style={`--paw-x: ${paw.x}%; --paw-y: ${paw.y}%; --paw-angle: ${paw.r}deg; --sibling-index: ${index + 1};`}
+        >
+          <PawPrintIcon class="w-full h-full" aria-hidden="true" />
+        </span>
+      ))
+    }
+  </div>
+</div>
