@@ -1,119 +1,83 @@
 ---
+import InstagramIcon from '@/assets/icons/instagram.svg';
 import PawIcon from '@/assets/icons/paw.svg';
-import VerifiedIcon from '@/assets/icons/verified.svg';
-import TruckIcon from '@/assets/icons/truck.svg';
-import ClockIcon from '@/assets/icons/clock.svg';
-import MailIcon from '@/assets/icons/mail.svg';
 import WhatsAppIcon from '@/assets/icons/whatsapp.svg';
 import { SITE_CONFIG, buildWhatsAppUrl } from '@/data/doglife';
 
 const footerChatUrl = buildWhatsAppUrl(
-  'Hola DogLife Store, tengo una consulta sobre la porción ideal para mi mascota'
+  'Hola DogLife Store, tengo una consulta sobre sus patitas deshidratadas'
 );
-const currentYear = new Date().getFullYear();
 ---
 
 <footer
-  class="w-full bg-surface-container-low text-on-surface-variant border-t border-craft-border pb-24 md:pb-0"
+  class="w-full border-t border-craft-border bg-surface-container-low text-on-surface-variant pb-20 md:pb-0"
 >
-  <div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin pt-space-xl pb-space-lg">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-lg lg:gap-space-xl mb-space-xl">
-      <!-- Brand Story & Origin Seal -->
-      <div class="space-y-space-sm">
+  <div class="mx-auto max-w-7xl px-margin-mobile py-space-lg md:px-margin">
+    <div class="flex flex-col items-center justify-between gap-space-md md:flex-row">
+      <!-- Marca -->
+      <div class="flex flex-col items-center gap-1 md:items-start">
         <div class="flex items-center gap-space-xs">
-          <PawIcon class="w-7 h-7 text-mocha" aria-hidden="true" />
-          <span class="font-display text-headline-sm text-primary">{SITE_CONFIG.brandName}</span>
+          <PawIcon class="h-6 w-6 text-mocha" aria-hidden="true" />
+          <span class="font-display text-title-lg text-primary">{SITE_CONFIG.brandName}</span>
         </div>
-        <p class="text-body-md text-on-surface-variant leading-relaxed">
-          Snacks 100% naturales deshidratados artesanalmente en Lima, Perú. Pureza de ingrediente
-          único para la salud articular y dental de tu engreído.
+        <p class="text-label-sm text-on-surface-variant">
+          Snacks 100% naturales • Lima, Perú
         </p>
-        <div
-          class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-pill-bg border border-pill-border text-mocha text-label-sm"
+      </div>
+
+      <!-- Enlaces de navegación -->
+      <nav aria-label="Enlaces del pie de página">
+        <ul
+          role="list"
+          class="flex flex-wrap items-center justify-center gap-x-space-md gap-y-1 text-body-sm"
         >
-          <VerifiedIcon class="w-4 h-4 text-sage" aria-hidden="true" />
-          <span>Elaborado en Lima, Perú • 100% Natural</span>
-        </div>
-      </div>
-
-      <!-- Explore Store -->
-      <div class="space-y-space-sm">
-        <h2 class="text-title-md text-on-surface">Explorar Tienda</h2>
-        <ul role="list" class="space-y-space-xs text-body-sm">
           <li>
-            <a href="#catalogo-packs" class="hover:text-primary transition-colors inline-block py-0.5">
-              Packs Patitas 15u, ½ kg &amp; 1 kg
+            <a href="#catalogo-packs" class="inline-block py-1 transition-colors hover:text-primary">
+              Packs
             </a>
           </li>
           <li>
-            <a href="#beneficios" class="hover:text-primary transition-colors inline-block py-0.5">
-              Colágeno y Salud Articular
+            <a href="#beneficios" class="inline-block py-1 transition-colors hover:text-primary">
+              Beneficios
             </a>
           </li>
           <li>
-            <a href="#seguridad-faq" class="hover:text-primary transition-colors inline-block py-0.5">
-              Guía de Consumo Seguro &amp; FAQ
+            <a href="#consumo-seguro" class="inline-block py-1 transition-colors hover:text-primary">
+              Consumo seguro
             </a>
           </li>
           <li>
-            <a href="#como-pedir" class="hover:text-primary transition-colors inline-block py-0.5">
-              Cómo Pedir en Lima
+            <a href="#faq" class="inline-block py-1 transition-colors hover:text-primary">
+              Preguntas frecuentes
+            </a>
+          </li>
+          <li>
+            <a href="#como-pedir" class="inline-block py-1 transition-colors hover:text-primary">
+              Cómo pedir
             </a>
           </li>
         </ul>
-      </div>
+      </nav>
 
-      <!-- Support & Shipping -->
-      <div class="space-y-space-sm">
-        <h2 class="text-title-md text-on-surface">Atención &amp; Envíos</h2>
-        <ul role="list" class="space-y-space-xs text-body-sm">
-          <li class="flex items-start gap-space-xs">
-            <TruckIcon class="w-4 h-4 text-secondary shrink-0 mt-0.5" aria-hidden="true" />
-            <span>Envíos a todo Lima Metropolitana y Provincias</span>
-          </li>
-          <li class="flex items-start gap-space-xs">
-            <ClockIcon class="w-4 h-4 text-secondary shrink-0 mt-0.5" aria-hidden="true" />
-            <span>{SITE_CONFIG.schedule}</span>
-          </li>
-          <li class="flex items-start gap-space-xs">
-            <MailIcon class="w-4 h-4 text-secondary shrink-0 mt-0.5" aria-hidden="true" />
-            <a href={`mailto:${SITE_CONFIG.email}`} class="hover:text-primary transition-colors">
-              {SITE_CONFIG.email}
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Express WhatsApp Help -->
-      <div class="space-y-space-sm">
-        <h2 class="text-title-md text-on-surface">Atención Express</h2>
-        <p class="text-body-sm text-on-surface-variant">
-          ¿Tienes dudas sobre el tamaño o porción para tu mascota? Escríbenos directamente.
-        </p>
+      <!-- Redes sociales (solo iconos) -->
+      <div class="flex items-center gap-space-sm">
         <a
           href={footerChatUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-space-xs w-full px-space-md py-2.5 min-h-11 rounded-full bg-honey text-roasted text-label-lg font-bold transition-colors hover:bg-secondary-container shadow-xs"
+          aria-label="WhatsApp de DogLife Store"
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-pill-border bg-pill-bg text-primary transition-colors hover:border-secondary-fixed-dim hover:bg-secondary-container"
         >
-          <WhatsAppIcon class="w-4 h-4 shrink-0" aria-hidden="true" />
-          <span>Chatear por WhatsApp</span>
+          <WhatsAppIcon class="h-5 w-5" aria-hidden="true" />
         </a>
-      </div>
-    </div>
-
-    <div
-      class="pt-space-md border-t border-craft-border flex flex-col md:flex-row items-center justify-between gap-space-sm text-label-sm font-medium text-on-surface-variant"
-    >
-      <p>
-        © {currentYear} {SITE_CONFIG.brandName}. Todos los derechos reservados. RUC {SITE_CONFIG.ruc}.
-      </p>
-      <div class="flex items-center gap-space-md">
-        <a href="#como-pedir" class="hover:text-primary transition-colors">
-          Condiciones de Envío
-        </a>
-        <a href={footerChatUrl} target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">
-          Atención al Cliente
+        <a
+          href={SITE_CONFIG.instagramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram de DogLife Store"
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-pill-border bg-pill-bg text-primary transition-colors hover:border-secondary-fixed-dim hover:bg-secondary-container"
+        >
+          <InstagramIcon class="h-5 w-5" aria-hidden="true" />
         </a>
       </div>
     </div>
