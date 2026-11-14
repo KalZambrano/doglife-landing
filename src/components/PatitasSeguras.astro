@@ -1,0 +1,93 @@
+---
+import BoneStampIcon from '@/assets/icons/bone-stamp.svg';
+import CheckCircleIcon from '@/assets/icons/check-circle.svg';
+import { PREPARATION_COMPARISON } from '@/data/doglife';
+---
+
+<section
+  id="consumo-seguro"
+  style="--section-intrinsic-height: 540px;"
+  class="deferred-section w-full bg-surface py-8 md:py-18 px-margin-mobile md:px-margin"
+>
+  <div class="mx-auto max-w-5xl space-y-space-xl">
+    <div class="mx-auto max-w-2xl space-y-space-xs text-center">
+      <span class="text-label-sm uppercase tracking-widest text-secondary">Consumo seguro</span>
+      <h2 class="fluid-section-title text-primary">¿Huesos de pollo? Sí, pero no como los imaginas.</h2>
+      <p class="text-body-sm md:text-body-md text-on-surface-variant">
+        La clave está en cómo se preparan. Compara la diferencia antes de darle un snack a tu perro.
+      </p>
+    </div>
+
+    <!-- Comparativa centrada sin bordes -->
+    <div class="relative mx-auto grid max-w-4xl items-stretch gap-space-md md:grid-cols-2 md:gap-space-lg">
+      {
+        PREPARATION_COMPARISON.map((card) => {
+          const isRecommended = card.tone === 'recommended';
+          return (
+            <article
+              class:list={[
+                'relative flex flex-col items-center rounded-2xl p-6 text-center md:p-space-xl',
+                isRecommended
+                  ? 'bg-linear-to-br from-warm-milk to-secondary-container/35 shadow-ambient'
+                  : 'bg-surface-container-low',
+              ]}
+            >
+              {card.stampLabel && (
+                <div class="pointer-events-none absolute -top-5 right-3 z-10 inline-flex h-14 w-32 -rotate-6 items-center justify-center drop-shadow-sm md:-top-6 md:right-5">
+                  <BoneStampIcon class="absolute inset-0 h-full w-full" aria-hidden="true" />
+                  <span class="relative z-10 text-label-sm font-bold uppercase tracking-widest text-secondary-container">
+                    {card.stampLabel}
+                  </span>
+                </div>
+              )}
+
+              <div class="mb-5 flex flex-col items-center gap-3">
+                <span
+                  class:list={[
+                    'flex h-12 w-12 shrink-0 items-center justify-center rounded-full',
+                    isRecommended ? 'bg-sage/15 text-sage' : 'bg-clay/12 text-clay',
+                  ]}
+                >
+                  {isRecommended ? (
+                    <CheckCircleIcon class="h-6 w-6" aria-hidden="true" />
+                  ) : (
+                    <span aria-hidden="true" class="text-title-lg font-bold">✕</span>
+                  )}
+                </span>
+                <h3 class="font-display text-headline-sm text-primary">{card.title}</h3>
+              </div>
+
+              <ul
+                role="list"
+                class="mx-auto max-w-xs space-y-space-sm text-left text-body-sm text-on-surface-variant"
+              >
+                {card.items.map((item) => (
+                  <li class="flex gap-2.5">
+                    <span
+                      class:list={[
+                        'mt-0.5 shrink-0 font-bold',
+                        isRecommended ? 'text-sage' : 'text-clay',
+                      ]}
+                      aria-hidden="true"
+                    >
+                      {isRecommended ? '✓' : '•'}
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          );
+        })
+      }
+
+      <!-- Indicador central de comparativa (escritorio) -->
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute top-1/2 left-1/2 z-10 hidden h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-surface-container-highest text-label-md font-bold uppercase tracking-wider text-primary shadow-header md:flex"
+      >
+        VS
+      </span>
+    </div>
+  </div>
+</section>
