@@ -9,6 +9,7 @@ export const SITE_CONFIG = {
   secondaryPhoneDisplay: '981 234 567',
   whatsappPrimary: '51994821349',
   whatsappSecondary: '51981234567',
+  instagramUrl: 'https://www.instagram.com/doglifestore.pe/',
   email: 'hola@doglifestore.pe',
   ruc: '20601234567',
   schedule: 'Lunes a Sábado: 9:00 am - 7:00 pm',
@@ -193,6 +194,89 @@ export const COMPOSITION_METRICS: CompositionMetric[] = [
     percentage: '6.3%',
     barColorClass: 'bg-surface-tint',
     note: 'Nivel idóneo para evitar hongos y garantizar crujido sin astillarse.',
+  },
+];
+
+export interface DogSizeOption {
+  id: 'small' | 'medium' | 'large';
+  label: string;
+  weight: string;
+  count: number;
+  amount: string;
+  frequency: string;
+  tip: string;
+}
+
+export const DEFAULT_DOG_SIZE: DogSizeOption['id'] = 'medium';
+
+export const PORTION_CHAT_COPY = {
+  triggerAriaLabel: 'Abrir calculadora de porciones según el tamaño de tu mascota',
+  barkBubble: '¡Guau!',
+  assistantName: 'Calculadora Perruna',
+  assistantStatus: 'Guía de porciones',
+  closeLabel: 'Cerrar chat de calculadora',
+  greetingMessage: '¡Guau! ¿Cuántas patitas puede comer tu perro? Elige su tamaño:',
+  radioGroupLabel: 'Tamaño de tu perro',
+  userReplyPrefix: 'Mi perro es',
+  resultEyebrow: 'Porción sugerida',
+} as const;
+
+export const DOG_SIZES: DogSizeOption[] = [
+  {
+    id: 'small',
+    label: 'Pequeño',
+    weight: 'Hasta 10 kg',
+    count: 1,
+    amount: '1 patita',
+    frequency: 'cada 2 días',
+    tip: 'Ideal para su tamaño, sin darle de más.',
+  },
+  {
+    id: 'medium',
+    label: 'Mediano',
+    weight: '10 – 25 kg',
+    count: 1,
+    amount: '1 patita',
+    frequency: 'al día',
+    tip: 'Ideal para entretenerlo y cuidar sus dientes cada día.',
+  },
+  {
+    id: 'large',
+    label: 'Grande',
+    weight: 'Más de 25 kg',
+    count: 2,
+    amount: '1 a 2 patitas',
+    frequency: 'al día',
+    tip: 'Empieza con 1 patita y luego puedes darle 2.',
+  },
+];
+
+export interface ComparisonCard {
+  title: string;
+  tone: 'avoid' | 'recommended';
+  stampLabel?: string;
+  items: string[];
+}
+
+export const PREPARATION_COMPARISON: ComparisonCard[] = [
+  {
+    title: 'Hueso cocido o hervido',
+    tone: 'avoid',
+    items: [
+      'El calor altera su estructura y lo vuelve quebradizo.',
+      'Se parte en astillas filosas y puede lastimar.',
+      'Por eso muchos veterinarios lo desaconsejan.',
+    ],
+  },
+  {
+    title: 'Patita deshidratada',
+    tone: 'recommended',
+    stampLabel: 'Nuestro',
+    items: [
+      'Se deshidrata lento y a baja temperatura.',
+      'Conserva el colágeno y la elasticidad natural.',
+      'Se desmenuza en polvo crujiente al masticar.',
+    ],
   },
 ];
 
