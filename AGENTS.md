@@ -20,9 +20,13 @@ Windows quirk: `pnpm astro dev stop` can hang; use `./node_modules/.bin/astro de
 ## Layout & content
 
 - `src/pages/index.astro` is the whole site: it just composes the section components in order and
-  holds the scrollspy script. Section ids (`#inicio`, `#beneficios`, `#catalogo-packs`,
-  `#seguridad-faq`, `#como-pedir`, `#contacto`) are the nav targets in `Header`, `MobileBottomNav`,
-  and `Footer` — renaming one silently breaks navigation/scrollspy.
+  holds the scrollspy script. Section ids are the nav targets — renaming one silently breaks
+  navigation/scrollspy. Current wiring: `Header` → `#inicio`, `#beneficios`, `#catalogo-packs`,
+  `#faq`; `MobileBottomNav` → `#catalogo-packs`, `#beneficios`, `#consumo-seguro`, `#contacto`;
+  `Footer` → `#catalogo-packs`, `#beneficios`, `#consumo-seguro`, `#faq`, `#como-pedir`.
+- The FAQ accordion lives inside `FinalCtaBanner.astro` (`id="faq"`, inside the `#contacto`
+  section), not in `NutritionSafetySection`. `NutritionSafetySection` owns `#seguridad-faq` and is
+  currently commented out in `index.astro`.
 - All copy, prices, phone numbers, packs, FAQ, order steps, and testimonials live in
   `src/data/doglife.ts`. Edit content there, not inside components.
 - Mobile and desktop copy are intentionally different (extra `mobile*` fields, `md:hidden` /
