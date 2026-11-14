@@ -1,0 +1,308 @@
+---
+import DogSittingBarkIcon from '@/assets/icons/dog-sitting-bark.svg';
+import PawIcon from '@/assets/icons/paw.svg';
+import {
+  DEFAULT_DOG_SIZE,
+  DOG_SIZES,
+  PORTION_CHAT_COPY,
+} from '@/data/doglife';
+
+const activeSize = DOG_SIZES.find((size) => size.id === DEFAULT_DOG_SIZE) ?? DOG_SIZES[0];
+---
+
+<div data-portion-widget>
+  <!-- Ventana de chat flotante (Calculadora interactiva) -->
+  <dialog
+    id="portion-calculator-chat"
+    aria-labelledby="portion-chat-title"
+    class="portion-chat-dialog fixed z-40 flex-col overflow-hidden rounded-2xl p-0"
+  >
+    <!-- Cabecera del chat -->
+    <header class="flex items-center justify-between gap-3 bg-primary px-4 py-3 text-on-primary">
+      <div>
+        <h2 id="portion-chat-title" class="font-display text-title-md leading-tight text-on-primary">
+          {PORTION_CHAT_COPY.assistantName}
+        </h2>
+        <p class="mt-0.5 text-label-sm text-on-primary/80">
+          {PORTION_CHAT_COPY.assistantStatus}
+        </p>
+      </div>
+
+      <button
+        type="button"
+        data-chat-close
+        aria-label={PORTION_CHAT_COPY.closeLabel}
+        class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-on-primary/10 text-on-primary transition-colors hover:bg-on-primary/20"
+      >
+        <span aria-hidden="true" class="text-title-md leading-none">✕</span>
+      </button>
+    </header>
+
+    <!-- Cuerpo de conversación -->
+    <div class="flex-1 space-y-3 overflow-y-auto bg-surface-container-low p-4">
+      <!-- Mensaje 1 del perrito: pregunta + selector de tamaño -->
+      <div class="rounded-2xl rounded-tl-xs bg-primary p-3.5 text-on-primary shadow-header">
+        <p class="text-body-sm leading-snug text-on-primary/95">
+          {PORTION_CHAT_COPY.greetingMessage}
+        </p>
+
+        <div
+          role="radiogroup"
+          aria-label={PORTION_CHAT_COPY.radioGroupLabel}
+          data-size-group
+          class="mt-3 grid grid-cols-3 gap-2"
+        >
+          {
+            DOG_SIZES.map((size) => (
+              <button
+                type="button"
+                role="radio"
+                aria-checked={size.id === DEFAULT_DOG_SIZE ? 'true' : 'false'}
+                tabindex={size.id === DEFAULT_DOG_SIZE ? 0 : -1}
+                data-size-option
+                data-label={size.label}
+                data-weight={size.weight}
+                data-count={size.count}
+                data-amount={size.amount}
+                data-frequency={size.frequency}
+                data-tip={size.tip}
+                class="portion-option flex h-full min-h-16 flex-col items-center justify-center gap-0.5 rounded-xl border-2 px-1.5 py-2.5 text-center"
+              >
+                <span class="text-label-md font-bold">{size.label}</span>
+                <span class="text-label-sm opacity-80 leading-tight">{size.weight}</span>
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Respuesta del usuario en el chat -->
+      <div class=" flex justify-end">
+        <p class="rounded-2xl rounded-br-xs bg-secondary-container px-3.5 py-2 text-label-md text-primary shadow-header">
+          {PORTION_CHAT_COPY.userReplyPrefix}{' '}
+          <span data-chat-user-size class="font-bold">
+            {activeSize.label} ({activeSize.weight})
+          </span>
+        </p>
+      </div>
+
+      <!-- Mensaje 2 del perrito: Resultado compacto de la calculadora -->
+      <div
+        aria-live="polite"
+        class="rounded-2xl rounded-tl-xs border border-craft-border bg-eggshell p-3.5 text-primary shadow-header"
+      >
+        <div class="flex items-center justify-between gap-3">
+          <div>
+            <p class="text-label-sm uppercase tracking-[0.14em] text-secondary">
+              {PORTION_CHAT_COPY.resultEyebrow}
+            </p>
+            <p class="mt-0.5 flex flex-wrap items-baseline gap-x-1.5">
+              <span data-portion-amount class="font-display text-headline-sm leading-tight text-primary">
+                {activeSize.amount}
+              </span>
+              <span data-portion-frequency class="text-title-md text-secondary">
+                {activeSize.frequency}
+              </span>
+            </p>
+          </div>
+
+          <div
+            data-portion-paws
+            class="flex shrink-0 items-center justify-center gap-1 rounded-xl bg-surface-container-low px-2.5 py-2"
+          >
+            {
+              Array.from({ length: activeSize.count }).map(() => (
+                <PawIcon class="h-8 w-8 text-honey" aria-hidden="true" />
+              ))
+            }
+          </div>
+        </div>
+
+        <p
+          data-portion-tip
+          class="mt-2.5 border-t border-craft-border pt-2 text-body-sm leading-snug text-on-surface-variant"
+        >
+          {activeSize.tip}
+        </p>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Botón flotante inferior derecho: solo el perrito sentado de perfil con ladrido periódico -->
+  <button
+    type="button"
+    data-chat-trigger
+    aria-label={PORTION_CHAT_COPY.triggerAriaLabel}
+    aria-controls="portion-calculator-chat"
+    aria-expanded="false"
+    class="dog-bark-trigger fixed right-4 bottom-20 md:right-7 md:bottom-7 z-40 flex h-16 w-16 items-center justify-center rounded-full border-2 border-secondary-container bg-primary p-1.5 text-on-primary shadow-ambient cursor-pointer"
+  >
+    <!-- Burbuja animada de ladrido "¡Guau!" -->
+    <span
+      aria-hidden="true"
+      class="dog-bark-badge absolute -top-7 -left-3 whitespace-nowrap rounded-full rounded-br-xs border border-secondary-fixed-dim bg-secondary-container px-2.5 py-0.5 text-label-sm font-bold text-primary shadow-header"
+    >
+      {PORTION_CHAT_COPY.barkBubble}
+    </span>
+
+    <span class="flex h-full w-full items-center justify-center rounded-full bg-primary-container">
+      <DogSittingBarkIcon class="h-12 w-12" aria-hidden="true" />
+    </span>
+  </button>
+
+  <template data-paw-template>
+    <PawIcon class="h-8 w-8 text-honey" aria-hidden="true" />
+  </template>
+</div>
+
+<script>
+  const widget = document.querySelector<HTMLElement>('[data-portion-widget]');
+  const dialog = widget?.querySelector<HTMLDialogElement>('#portion-calculator-chat');
+  const triggerBtn = widget?.querySelector<HTMLButtonElement>('[data-chat-trigger]');
+  const closeBtn = widget?.querySelector<HTMLButtonElement>('[data-chat-close]');
+  const group = widget?.querySelector<HTMLElement>('[data-size-group]');
+  const options = group
+    ? Array.from(group.querySelectorAll<HTMLButtonElement>('[data-size-option]'))
+    : [];
+  const paws = widget?.querySelector<HTMLElement>('[data-portion-paws]');
+  const amountEl = widget?.querySelector<HTMLElement>('[data-portion-amount]');
+  const frequencyEl = widget?.querySelector<HTMLElement>('[data-portion-frequency]');
+  const tipEl = widget?.querySelector<HTMLElement>('[data-portion-tip]');
+  const userSizeEl = widget?.querySelector<HTMLElement>('[data-chat-user-size]');
+  const pawTemplate = widget?.querySelector<HTMLTemplateElement>('[data-paw-template]');
+
+  let supportsDisplayTransition: boolean | undefined;
+  function canTransitionDisplay(): boolean {
+    if (supportsDisplayTransition !== undefined) return supportsDisplayTransition;
+    if (!window.CSS?.supports?.('transition-behavior', 'allow-discrete') || !document.body) {
+      return false;
+    }
+    const probe = document.createElement('div');
+    probe.style.cssText = 'transition: display 1s allow-discrete !important; display: block;';
+    document.body.appendChild(probe);
+    getComputedStyle(probe).display;
+    probe.style.display = 'none';
+    supportsDisplayTransition = getComputedStyle(probe).display === 'block';
+    probe.remove();
+    return supportsDisplayTransition;
+  }
+
+  function supportsTopLayerExit(): boolean {
+    return Boolean(window.CSS?.supports?.('overlay', 'auto')) && canTransitionDisplay();
+  }
+
+  if (dialog && triggerBtn && closeBtn) {
+    const closeChat = async (returnFocus = false) => {
+      if (!dialog.open || dialog.hasAttribute('data-closing')) return;
+      triggerBtn.setAttribute('aria-expanded', 'false');
+
+      if (!supportsTopLayerExit()) {
+        dialog.setAttribute('data-closing', '');
+        const animations = dialog.getAnimations({ subtree: true });
+        if (animations.length > 0) {
+          await Promise.race([
+            Promise.allSettled(animations.map((a) => a.finished)),
+            new Promise((r) => setTimeout(r, 400)),
+          ]);
+        }
+        if (!dialog.hasAttribute('data-closing')) return;
+        dialog.removeAttribute('data-closing');
+      }
+
+      dialog.close();
+      if (returnFocus) triggerBtn.focus();
+    };
+
+    const openChat = () => {
+      if (dialog.open) return;
+      dialog.removeAttribute('data-closing');
+      dialog.show();
+      triggerBtn.setAttribute('aria-expanded', 'true');
+      const checkedOption = options.find((opt) => opt.getAttribute('aria-checked') === 'true');
+      checkedOption?.focus();
+    };
+
+    triggerBtn.addEventListener('click', () => {
+      if (dialog.open && !dialog.hasAttribute('data-closing')) {
+        closeChat(false);
+      } else {
+        openChat();
+      }
+    });
+
+    closeBtn.addEventListener('click', () => {
+      closeChat(true);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && dialog.open) {
+        event.preventDefault();
+        closeChat(true);
+      }
+    });
+
+    document.addEventListener('pointerdown', (event) => {
+      if (!dialog.open || dialog.hasAttribute('data-closing')) return;
+      const target = event.target as Node | null;
+      if (target && !dialog.contains(target) && !triggerBtn.contains(target)) {
+        closeChat(false);
+      }
+    });
+  }
+
+  if (group && options.length > 0 && paws && amountEl && frequencyEl && tipEl && pawTemplate) {
+    const select = (option: HTMLButtonElement, focus = false) => {
+      options.forEach((item) => {
+        const isActive = item === option;
+        item.setAttribute('aria-checked', isActive ? 'true' : 'false');
+        item.tabIndex = isActive ? 0 : -1;
+      });
+
+      const count = Number(option.dataset.count ?? '1');
+      const clones = Array.from({ length: count }, () => {
+        const clone = pawTemplate.content.firstElementChild?.cloneNode(true) as
+          | SVGElement
+          | undefined;
+        if (!clone) return null;
+        clone.classList.add('portion-paw');
+        return clone;
+      }).filter((node): node is SVGElement => node !== null);
+
+      paws.replaceChildren(...clones);
+      amountEl.textContent = option.dataset.amount ?? '';
+      frequencyEl.textContent = option.dataset.frequency ?? '';
+      tipEl.textContent = option.dataset.tip ?? '';
+      if (userSizeEl) {
+        userSizeEl.textContent = `${option.dataset.label ?? ''} (${option.dataset.weight ?? ''})`;
+      }
+
+      if (focus) option.focus();
+    };
+
+    options.forEach((option, index) => {
+      option.addEventListener('click', () => select(option));
+
+      option.addEventListener('keydown', (event) => {
+        const keys: Record<string, number> = {
+          ArrowRight: index + 1,
+          ArrowDown: index + 1,
+          ArrowLeft: index - 1,
+          ArrowUp: index - 1,
+        };
+        const targetIndex = keys[event.key];
+
+        if (targetIndex === undefined) {
+          if (event.key === 'Home' || event.key === 'End') {
+            event.preventDefault();
+            select(options[event.key === 'Home' ? 0 : options.length - 1], true);
+          }
+          return;
+        }
+
+        event.preventDefault();
+        const next = (targetIndex + options.length) % options.length;
+        select(options[next], true);
+      });
+    });
+  }
+</script>

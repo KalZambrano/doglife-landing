@@ -5,6 +5,7 @@ import AnnouncementBar from '@/components/AnnouncementBar.astro';
 import HeroSection from '@/components/HeroSection.astro';
 import NutritionalBanner from '@/components/NutritionalBanner.astro';
 import BenefitsSection from '@/components/BenefitsSection.astro';
+import PatitasSeguras from '@/components/PatitasSeguras.astro';
 import PacksCatalog from '@/components/PacksCatalog.astro';
 import NutritionSafetySection from '@/components/NutritionSafetySection.astro';
 import OrderStepsSection from '@/components/OrderStepsSection.astro';
@@ -12,6 +13,7 @@ import TestimonialsSection from '@/components/TestimonialsSection.astro';
 import FinalCtaBanner from '@/components/FinalCtaBanner.astro';
 import Footer from '@/components/Footer.astro';
 import MobileBottomNav from '@/components/MobileBottomNav.astro';
+import PortionCalculatorChat from '@/components/PortionCalculatorChat.astro';
 ---
 
 <Layout>
@@ -21,15 +23,17 @@ import MobileBottomNav from '@/components/MobileBottomNav.astro';
     <AnnouncementBar />
     <HeroSection />
     <NutritionalBanner />
-    <BenefitsSection />
     <PacksCatalog />
-    <NutritionSafetySection />
+    <BenefitsSection />
+    <PatitasSeguras />
+    <!-- <NutritionSafetySection /> -->
     <OrderStepsSection />
-    <TestimonialsSection />
+    <!-- <TestimonialsSection /> -->
     <FinalCtaBanner />
   </main>
 
   <Footer />
+  <PortionCalculatorChat />
   <MobileBottomNav />
 </Layout>
 
@@ -67,20 +71,38 @@ import MobileBottomNav from '@/components/MobileBottomNav.astro';
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => Boolean(el));
 
+    const visible = new Set<HTMLElement>();
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('id');
-            fragmentLinks.forEach((link) => {
-              const isActive = link.getAttribute('href') === `#${id}`;
-              link.classList.toggle(':target-current', isActive);
-              if (isActive) {
-                link.setAttribute('aria-current', 'true');
-              } else {
-                link.removeAttribute('aria-current');
-              }
-            });
+            visible.add(entry.target as HTMLElement);
+          } else {
+            visible.delete(entry.target as HTMLElement);
+          }
+        });
+
+        // Prefer the deepest visible anchor (#faq lives inside #contacto)
+        let active: HTMLElement | null = null;
+        let activeDepth = -1;
+        visible.forEach((el) => {
+          let depth = 0;
+          for (let node = el.parentElement; node; node = node.parentElement) depth++;
+          if (depth > activeDepth) {
+            activeDepth = depth;
+            active = el;
+          }
+        });
+
+        const id = active?.getAttribute('id');
+        fragmentLinks.forEach((link) => {
+          const isActive = id !== undefined && link.getAttribute('href') === `#${id}`;
+          link.classList.toggle(':target-current', isActive);
+          if (isActive) {
+            link.setAttribute('aria-current', 'true');
+          } else {
+            link.removeAttribute('aria-current');
           }
         });
       },

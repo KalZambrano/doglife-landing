@@ -228,21 +228,9 @@
     contain-intrinsic-size: auto none auto var(--section-intrinsic-height, 600px);
   }
 
-  /* Native CSS Scrollspy with forgiving :is() selector fallback */
+  /* Native CSS Scrollspy */
   .scrollspy-nav {
     scroll-target-group: auto;
-  }
-
-  .scrollspy-desktop a:is(:target-current, .\:target-current) {
-    background-color: var(--color-primary-container);
-    color: var(--color-on-primary);
-    font-weight: 600;
-  }
-
-  .scrollspy-mobile a:is(:target-current, .\:target-current) {
-    color: var(--color-primary);
-    font-weight: 700;
-    background-color: color-mix(in srgb, var(--color-secondary-fixed) 55%, transparent);
   }
 
   /* Tactile boutique card elevation on pointer hover */
@@ -504,6 +492,163 @@
     opacity: 0.38;
     cursor: not-allowed;
   }
+
+  /* Dog size radio selector + animated portion paws */
+  .portion-option {
+    background-color: color-mix(in srgb, var(--color-on-primary) 6%, transparent);
+    border-color: color-mix(in srgb, var(--color-on-primary) 16%, transparent);
+    color: var(--color-on-primary);
+    transition:
+      transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 200ms ease,
+      border-color 200ms ease;
+  }
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .portion-option:hover {
+      background-color: color-mix(in srgb, var(--color-secondary-container) 14%, transparent);
+      border-color: color-mix(in srgb, var(--color-secondary-container) 45%, transparent);
+    }
+  }
+
+  .portion-option[aria-checked="true"] {
+    background-color: var(--color-secondary-container);
+    border-color: var(--color-secondary-container);
+    color: var(--color-primary);
+    transform: translateY(-4px);
+  }
+
+  .portion-paw {
+    animation: portion-pop 350ms ease-out;
+  }
+
+  /* Floating Dog Portion Calculator Chat & Periodic Bark Animation */
+  .portion-chat-dialog {
+    inset: auto var(--spacing-gutter-mobile) 9.25rem auto;
+    margin: 0;
+    inline-size: min(23.5rem, calc(100vw - 2rem));
+    max-block-size: calc(100dvh - 10.5rem);
+    background-color: var(--color-warm-milk);
+    color: var(--color-on-surface);
+    border: 1px solid var(--color-craft-border);
+    box-shadow: var(--shadow-tactile-hover);
+    opacity: 0;
+    transition-property: opacity, transform, display, overlay;
+    transition-duration: 0.26s;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    transition-behavior: allow-discrete;
+
+    @media (min-width: 768px) {
+      inset: auto 1.75rem 6.75rem auto;
+      max-block-size: calc(100dvh - 8rem);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      transform: translateY(0.75rem) scale(0.94);
+      transform-origin: bottom right;
+    }
+  }
+
+  :is(.portion-chat-dialog[open]):where(:not([data-closing])) {
+    display: flex;
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      transform: translateY(0) scale(1);
+
+      @starting-style {
+        transform: translateY(0.75rem) scale(0.94);
+      }
+    }
+  }
+
+  .dog-bark-trigger {
+    transition:
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 200ms ease;
+  }
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .dog-bark-trigger:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: var(--shadow-tactile-hover);
+    }
+  }
+
+  .dog-bark-trigger .dog-profile-head {
+    transform-box: fill-box;
+    transform-origin: 82% 78%;
+  }
+
+  .dog-bark-trigger .dog-profile-jaw {
+    transform-box: fill-box;
+    transform-origin: 88% 18%;
+  }
+
+  .dog-bark-trigger .dog-profile-ear {
+    transform-box: fill-box;
+    transform-origin: 50% 15%;
+  }
+
+  .dog-bark-trigger .dog-profile-tail {
+    transform-box: fill-box;
+    transform-origin: 12% 85%;
+  }
+
+  .dog-bark-trigger .dog-bark-waves {
+    transform-box: fill-box;
+    transform-origin: 100% 60%;
+    opacity: 0;
+  }
+
+  .dog-bark-badge {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .dog-bark-trigger:not([aria-expanded="true"]) .dog-profile-head {
+      animation: dog-head-bark 6.4s ease-in-out infinite;
+    }
+
+    .dog-bark-trigger:not([aria-expanded="true"]) .dog-profile-jaw {
+      animation: dog-jaw-bark 6.4s ease-in-out infinite;
+    }
+
+    .dog-bark-trigger:not([aria-expanded="true"]) .dog-profile-ear {
+      animation: dog-ear-perk 6.4s ease-in-out infinite;
+    }
+
+    .dog-bark-trigger:not([aria-expanded="true"]) .dog-profile-tail {
+      animation: dog-tail-wag 6.4s ease-in-out infinite;
+    }
+
+    .dog-bark-trigger:not([aria-expanded="true"]) .dog-bark-waves {
+      animation: dog-waves-pop 6.4s ease-out infinite;
+    }
+
+    .dog-bark-trigger:not([aria-expanded="true"]) .dog-bark-badge {
+      animation: dog-badge-pop 6.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    }
+  }
+}
+
+/* Scrollspy active states kept unlayered so they override @layer utilities (e.g. text-on-surface-variant) */
+.scrollspy-desktop a:is(:target-current, .\:target-current) {
+  background-color: var(--color-primary-container);
+  color: var(--color-on-primary);
+  font-weight: 600;
+}
+
+.scrollspy-mobile a:is(:target-current, .\:target-current) {
+  color: var(--color-primary);
+  font-weight: 700;
+  background-color: color-mix(in srgb, var(--color-secondary-fixed) 55%, transparent);
 }
 
 @keyframes hero-paw-fade {
@@ -521,5 +666,121 @@
   }
   to {
     scale: 1;
+  }
+}
+
+@keyframes portion-pop {
+  0% {
+    scale: 0.5;
+    opacity: 0;
+  }
+  70% {
+    scale: 1.15;
+  }
+  100% {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+@keyframes dog-head-bark {
+  0%,
+  10%,
+  32%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  14%,
+  22% {
+    transform: rotate(7deg) translateY(-1.5px);
+  }
+  18%,
+  26% {
+    transform: rotate(1.5deg) translateY(0);
+  }
+}
+
+@keyframes dog-jaw-bark {
+  0%,
+  11%,
+  17%,
+  27%,
+  100% {
+    transform: rotate(0deg);
+  }
+  14%,
+  22% {
+    transform: rotate(-16deg);
+  }
+}
+
+@keyframes dog-ear-perk {
+  0%,
+  10%,
+  32%,
+  100% {
+    transform: rotate(0deg);
+  }
+  14%,
+  22% {
+    transform: rotate(10deg) translateY(-1px);
+  }
+}
+
+@keyframes dog-tail-wag {
+  0%,
+  9%,
+  34%,
+  100% {
+    transform: rotate(0deg);
+  }
+  13%,
+  21% {
+    transform: rotate(14deg);
+  }
+  17%,
+  25% {
+    transform: rotate(-10deg);
+  }
+}
+
+@keyframes dog-waves-pop {
+  0%,
+  11%,
+  18%,
+  27%,
+  100% {
+    opacity: 0;
+    transform: scale(0.65) translate(2px, 1px);
+  }
+  14%,
+  22% {
+    opacity: 1;
+    transform: scale(1.05) translate(-1px, -1px);
+  }
+}
+
+@keyframes dog-badge-pop {
+  0%,
+  10%,
+  34%,
+  100% {
+    opacity: 0;
+    transform: translateY(4px) scale(0.82);
+  }
+  14%,
+  28% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portion-paw {
+    animation: none;
+  }
+
+  .portion-chat-dialog {
+    transition-duration: 0.1s;
   }
 }
